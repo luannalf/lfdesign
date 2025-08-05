@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>LF Serviços - Elevadores</title>
+    <link rel="stylesheet" href="style.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Segoe+UI:wght@400;500;600&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="icon" href="favicon.ico" type="image/x-icon" />
+    <script src="script.js" defer></script>
+  </head>
+  <body>
+    <header>
+      <div class="container">
+        <div class="logo">
+          <img src="img/logo.png" alt="LF Serviços" />
+        </div>
+        <button class="burger-menu" aria-label="Menu">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+        <nav>
+          <a href="#sobre">Sobre</a>
+          <a href="#catalogo">Catálogo</a>
+          <a href="#contato">Contato</a>
+        </nav>
+      </div>
+    </header>
+
+    <section class="hero">
+      <img src="img/cabina4.png" alt="" class="hero-bg">
+      <div class="container hero-content">
+        <h1>Modernização de Elevadores</h1>
+        <p>
+          Oferecemos soluções personalizadas para transformar e modernizar seus
+          elevadores, com foco em design, qualidade e segurança.
+        </p>
+        <a href="#tetos" class="btn">Ver Catálogo</a>
+      </div>
+    </section>
+
+    <section id="tetos" class="tetos container">
+      <div class="container">
+        <div class="header">
+          <h2>TETOS</h2>
+          <hr />
+          <p class="description">
+            Opções modernas de iluminação LED e ventilação integrada.
+          </p>
+        </div>
+        <div class="cards">
+          <!-- Featured - Hide on mobile -->
+          <div class="card featured product-card" data-product="tlf1">
+            <div class="content">
+              <div class="label">TLF1</div>
+              <p>
+                Kit teto para cabinas com cantos retos e iluminação em perfis de
+                LED.
+              </p>
+            </div>
+            <img src="img/teto-render.png" alt="TLF1" />
+          </div>
+          <!-- Mobile version of featured card -->
+
+          <div class="card product-card mobile-only" data-product="tlf1">
+            <div class="label">TLF1</div>
+            <div class="image-container">
+              <img src="img/tetos-tlf1.png" alt="TLF1" class="main-image" />
+              <!-- Outras imagens serão carregadas via JavaScript -->
+              <div class="angle-indicators">
+                <span class="active"></span>
+                <span></span>
+                <span></span>
+                <span></span>
+              </div>
+            </div>
+
+            <p>
+              Kit teto para cabinas Neolift com módulo central e iluminação em
+              painel de LED.
+            </p>
+          </div>
+          <!-- Others -->
+
+          <div class="card product-card" data-product="tlf2">
+            <div class="label">TLF2</div>
+            <div class="image-container">
+              <img src="img/tetos-tlf2.png" alt="TLF2" class="main-image" />
+              <!-- Outras imagens serão carregadas via JavaScript -->
+              <div class="angle-indicators">
+                <span class="active"></span>
+                <span></span>
+                <span></span>
+                <span></span>
+              </div>
+            </div>
+
+            <p>
+              Kit teto para cabinas Neolift com módulo central e iluminação em
+              painel de LED.
+            </p>
+          </div>
+          <div class="card product-card" data-product="tlf3">
+            <div class="label">TLF3</div>
+            <div class="image-container">
+              <img src="img/tetos-tlf3.png" alt="TLF3" class="main-image" />
+              <div class="angle-indicators">
+                <span class="active"></span>
+                <span></span>
+                <span></span>
+                <span></span>
+              </div>
+            </div>
+
+            <p>
+              Kit teto para cabinas com cantos curvos e iluminação em painel de
+              LED.
+            </p>
+          </div>
+          <div class="card product-card" data-product="tlf4">
+            <div class="label">TLF4</div>
+            <div class="image-container">
+              <img src="img/tetos-tlf4.png" alt="TLF4" class="main-image" />
+              <div class="angle-indicators">
+                <span class="active"></span>
+                <span></span>
+                <span></span>
+                <span></span>
+              </div>
+            </div>
+
+            <p>
+              Kit teto para cabinas com cantos retos e iluminação em painel de
+              LED.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- Pisos -->
+    <section id="pisos" class="pisos">
+      <div class="container">
+        <div class="header">
+          <h2>PISOS</h2>
+          <hr />
+          <p class="description">
+            Projetos personalizados em design de pisos para elevadores, com uma
+            seleção premium de granitos, incluindo: Branco Dallas, Perla
+            Santana, Branco Ceará e Preto São Gabriel.
+          </p>
+        </div>
+        
+        <div class="granitos-flex">
+          
+          <div class="granito-card">
+            <div class="granito-img">
+              <img src="img/perla-santana.jpg" alt="Granito Perla Santana" />
+            </div>
+            <h3>PERLA SANTANA</h3>
+          </div>
+          <div class="granito-card">
+            <div class="granito-img">
+              <img src="img/branco-dallas.png" alt="Granito Branco Dallas" />
+            </div>
+            <h3>BRANCO DALLAS</h3>
+          </div>
+          <div class="granito-card">
+            <div class="granito-img">
+              <img src="img/branco-ceara.jpg" alt="Granito Branco Ceará" />
+            </div>
+            <h3>BRANCO CEARÁ</h3>
+          </div>
+          <div class="granito-card">
+            <div class="granito-img">
+              <img
+          src="img/granito-saogabriel.png"
+          alt="Granito Preto São Gabriel"
+              />
+            </div>
+            <h3>PRETO SÃO GABRIEL</h3>
+          </div>
+        </div>
+
+       <div class="cards">
+          
+          <!-- Others -->
+          <div class="card product-card" data-product="plf1">
+            <div class="label">PLF1</div>
+            <div class="image-container">
+              <img src="img/pisos-plf1.png" alt="PLF1" class="main-image" />
+              <!-- Outras imagens serão carregadas via JavaScript -->
+              <div class="angle-indicators">
+                <span class="active"></span>
+                <span></span>
+              </div>
+            </div>
+
+            <p>
+              Piso em granito Perla Santana com cantos
+              oitavados e perfis em aço inox.
+            </p>
+          </div>
+          <div class="card product-card" data-product="plf2">
+            <div class="label">PLF2</div>
+            <div class="image-container">
+              <img src="img/pisos-plf2.png" alt="PLF2" class="main-image" />
+              <div class="angle-indicators">
+                <span class="active"></span>
+                <span></span>
+              </div>
+            </div>
+
+            <p>
+              Piso com cantos arredondados em granito São Gabriel e detalhe losangular Perla Santana
+            </p>
+          </div>
+          <div class="card product-card" data-product="plf3">
+            <div class="label">PLF3</div>
+            <div class="image-container">
+              <img src="img/pisos-plf3.png" alt="PLF3" class="main-image" />
+              <div class="angle-indicators">
+                <span class="active"></span>
+                <span></span>
+              </div>
+            </div>
+
+            <p>
+              Piso com cantos retos em granito Branco Dallas e moldura em granito São Gabriel
+            </p>
+          </div>
+          <div class="card product-card" data-product="plf4">
+            <div class="label">PLF4</div>
+            <div class="image-container">
+              <img src="img/pisos-plf4.png" alt="PLF4" class="main-image" />
+              <div class="angle-indicators">
+                <span class="active"></span>
+                <span></span>
+              </div>
+            </div>
+
+            <p>
+              Piso com cantos retos em granito São Gabriel e moldura em granito Branco Ceará
+            </p>
+          </div>
+
+          <div class="card product-card" data-product="plf5">
+            <div class="label">PLF5</div>
+            <div class="image-container">
+              <img src="img/pisos-plf5.png" alt="PLF5" class="main-image" />
+              <div class="angle-indicators">
+                <span class="active"></span>
+                <span></span>
+              </div>
+            </div>
+
+            <p>
+              Piso uniforme com cantos retos em granito Perla Santana.
+            </p>
+          </div>
+          <div class="card product-card" data-product="plf6">
+            <div class="label">PLF6</div>
+            <div class="image-container">
+              <img src="img/pisos-plf6.png" alt="PLF6" class="main-image" />
+              <div class="angle-indicators">
+                <span class="active"></span>
+                <span></span>
+              </div>
+            </div>
+
+            <p>
+              Piso uniforme com cantos retos em granito Branco Dallas
+            </p>
+          </div>
+        </div>
+
+    </section>
+    <section id="corrimaos" class="corrimaos container">
+      <div class="container">
+        <div class="header">
+          <h2>CORRIMAOS</h2>
+          <hr />
+          <p class="description">
+            Corrimãos sob medida, disponíveis em modelos tubulares, retangulares ou projetados para se adequar ao design específico. 
+          </p>
+        </div>
+        
+        <div class="cards">
+          <div class="card product-card" data-product="clf1">
+            <div class="label">CLF1</div>
+            <div class="image-container">
+              <img src="img/corrimaos-clf1.png" alt="CLF1" class="main-image" />
+              <!-- Outras imagens serão carregadas via JavaScript -->
+              <div class="angle-indicators">
+                <span class="active"></span>
+                <span></span>
+              </div>
+            </div>
+
+            <p>Corrimão tubular em aço inox.</p>
+          </div>
+          <div class="card product-card" data-product="clf2">
+            <div class="label">CLF2</div>
+            <div class="image-container">
+              <img src="img/corrimaos-clf2.png" alt="CLF2" class="main-image" />
+              <!-- Outras imagens serão carregadas via JavaScript -->
+              <div class="angle-indicators">
+                <span class="active"></span>
+                <span></span>
+              </div>
+            </div>
+
+            <p>Corrimão retangular em aço inox.</p>
+          </div>
+          <div class="card product-card" data-product="clf3">
+            <div class="label">CLF3</div>
+            <div class="image-container">
+              <img src="img/corrimaos-clf3.png" alt="CLF3" class="main-image" />
+              <!-- Outras imagens serão carregadas via JavaScript -->
+              <div class="angle-indicators">
+                <span class="active"></span>
+                <span></span>
+              </div>
+            </div>
+
+            <p>Corrimão retangular em aço inox, com detalhe customizado em LED.</p>
+          </div>
+        </div>
+
+      </div>
+
+    </section>
+<footer>
+      <div class="container">
+        <p>&copy; 2023 LF Serviços. Todos os direitos reservados.</p>
+        <p>Desenvolvido por <a href="https://www.linkedin.com/in/seu-perfil/" target="_blank">Seu Nome</a></p>
+    </footer>
+    <!-- Modal -->
+    <div class="modal" id="productModal">
+      <div class="modal-content">
+        <button class="close-modal">&times;</button>
+        <div class="modal-image-container">
+          <button class="nav-button prev">&lt;</button>
+          <img src="" alt="" class="modal-image" />
+          <button class="nav-button next">&gt;</button>
+        </div>
+        <div class="modal-indicators"></div>
+      </div>
+    </div>
+  </body>
+</html>
