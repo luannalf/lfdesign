@@ -1,4 +1,60 @@
-// Configuração das imagens por produto
+// Configuração das descrições dos produtos
+    const productDescriptions = {
+      tlf1: {
+        title: 'TLF1',
+        description: 'Design moderno e elegante com sistema de iluminação uniforme que proporciona ótima distribuição de luz no ambiente. Inclui ventilação integrada.'
+      },
+      tlf2: {
+        title: 'TLF2',
+        description: 'Design em aço inox, com quatro luminárias LED embutidas, laterais curvas microperfuradas e grade de ventilação central. Compatível apenas com cabines Neolift.'
+      },
+      tlf3: {
+        title: 'TLF3',
+        description: 'Design sofisticado com curvas suaves que se integram perfeitamente ao ambiente. Sistema de iluminação LED de alta eficiência.'
+      },
+      tlf4: {
+        title: 'TLF4',
+        description: 'Modelo contemporâneo com acabamento em aço inox e sistema de ventilação integrado. Iluminação LED com excelente economia de energia.'
+      },
+      plf1: {
+        title: 'PLF1 - Piso Oitavado Perla Santana',
+        description: 'Piso em granito Perla Santana com cantos oitavados e perfis em aço inox. Design exclusivo que combina a elegância do granito com a modernidade do aço inox.'
+      },
+      plf2: {
+        title: 'PLF2 - Piso São Gabriel com Detalhe Losangular',
+        description: 'Piso com cantos arredondados em granito São Gabriel e detalhe losangular Perla Santana. Combinação sofisticada de materiais que cria um padrão único e elegante.'
+      },
+      plf3: {
+        title: 'PLF3 - Piso Branco Dallas Emoldurado',
+        description: 'Piso com cantos retos em granito Branco Dallas e moldura em granito São Gabriel. Design clean e contemporâneo que valoriza o contraste entre os materiais. Alta resistência e fácil manutenção.'
+      },
+      plf4: {
+        title: 'PLF4 - Piso São Gabriel com Moldura Clara',
+        description: 'Piso com cantos retos em granito São Gabriel e moldura em granito Branco Ceará. Composição elegante que combina a sobriedade do granito escuro com o requinte do acabamento claro na moldura.'
+      },
+      plf5: {
+        title: 'PLF5 - Piso Perla Santana Uniforme',
+        description: 'Piso uniforme com cantos retos em granito Perla Santana. Design minimalista que valoriza a beleza natural do granito.'
+      },
+      plf6: {
+        title: 'PLF6 - Piso Branco Dallas Uniforme',
+        description: 'Piso uniforme com cantos retos em granito Branco Dallas. Elegância atemporal com acabamento premium que proporciona durabilidade excepcional e facilidade de manutenção.'
+      },
+      clf1: {
+        title: 'CLF1 - Corrimão Tubular',
+        description: 'Corrimão tubular em aço inox. Design clássico e ergonômico que oferece excelente empunhadura e segurança. Acabamento polido que garante resistência à corrosão e facilidade de limpeza.'
+      },
+      clf2: {
+        title: 'CLF2 - Corrimão Retangular',
+        description: 'Corrimão retangular em aço inox. Design contemporâneo com linhas retas que agregam modernidade ao ambiente.'
+      },
+      clf3: {
+        title: 'CLF3 - Corrimão com LED',
+        description: 'Corrimão retangular em aço inox, com detalhe customizado em LED. Combinação única de funcionalidade e design que adiciona um elemento de luz ao ambiente. Sistema LED integrado de baixo consumo.'
+      }
+    };
+
+    // Configuração das imagens por produto
     const productImages = {
       tlf1: [
         'img/tetos-tlf1.png',
@@ -66,20 +122,28 @@
     const modal = document.getElementById('productModal');
     const modalImage = modal.querySelector('.modal-image');
     const modalIndicators = modal.querySelector('.modal-indicators');
+    const modalTitle = modal.querySelector('.modal-title');
+    const modalText = modal.querySelector('.modal-text');
     const prevButton = modal.querySelector('.nav-button.prev');
     const nextButton = modal.querySelector('.nav-button.next');
     const closeButton = modal.querySelector('.close-modal');
     let currentProduct = null;
     let currentImageIndex = 0;
 
-    // Função para atualizar a imagem do modal
+    // Função para atualizar o modal
     function updateModalImage() {
       const images = productImages[currentProduct];
+      const description = productDescriptions[currentProduct];
+      
       modalImage.style.opacity = 0;
       setTimeout(() => {
         modalImage.src = images[currentImageIndex];
         modalImage.style.opacity = 1;
       }, 150);
+
+      // Atualizar título e descrição
+      modalTitle.textContent = description.title;
+      modalText.textContent = description.description;
 
       // Atualizar indicadores
       const indicators = modalIndicators.querySelectorAll('span');

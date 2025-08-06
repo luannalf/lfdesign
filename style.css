@@ -129,13 +129,17 @@ nav a {
 .hero-content {
   color: var(--branco);
 }
+ .hero-content img{
+    position: absolute;
+    top: -133px;
+  }
 .hero-content h1 {
   font-size: 48px;
   margin-bottom: 20px;
 }
 .hero-content p {
   font-size: 27px;
-  color: var(--cinza-texto);
+  color: var(--cinza-claro);
   line-height: 29px;
   margin-bottom: 46px;
   width: 50%;
@@ -341,6 +345,23 @@ nav a {
 .modal-indicators span.active {
   background: var(--vermelho);
 }
+.modal-description {
+  margin-top: 20px;
+  padding: 20px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 4px;
+  color: var(--branco);
+}
+.modal-title {
+  font-size: 24px;
+  margin-bottom: 10px;
+  color: var(--vermelho);
+}
+.modal-text {
+  font-size: 16px;
+  line-height: 1.5;
+  color: var(--branco);
+}
 
 /*-----------------------------------------------------------------------------  
   Seção Pisos  
@@ -434,29 +455,130 @@ nav a {
   grid-column: 1 / -1;
 }
 
+.corrimaos .cards .card:last-child img{
+  height: 355px;
+  object-fit: cover;
+  object-position: center;
+}
 /*-----------------------------------------------------------------------------  
   Footer
 -----------------------------------------------------------------------------*/
+/* Footer Geral */
 footer {
-  background: var(--preto);
+  background-color: #333333;
   color: var(--branco);
-  padding: 20px 0;
+  padding: 40px 0 20px;
+  font-size: 15px;
 }
-footer .container {
+
+/* Desktop layout */
+.footer-container {
   display: flex;
-  flex-direction: column;
-  align-items: center;
+  justify-content: space-between;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  gap: 40px;
+  padding-bottom: 20px;
 }
-footer p {
-  margin: 5px 0;
+
+.footer-column {
+  flex: 1;
+  min-width: 200px;
 }
+
+.footer-logo {
+  height: 40px;
+  filter: brightness(100%);
+}
+
+footer h4 {
+  margin-bottom: 10px;
+  font-size: 16px;
+  color: var(--branco);
+}
+
+footer ul {
+  list-style: none;
+  padding: 0;
+}
+
+footer ul li {
+  margin-bottom: 6px;
+}
+
 footer a {
-  color: var(--vermelho);
+  color: var(--branco);
   text-decoration: none;
 }
+
 footer a:hover {
-  text-decoration: underline;
+  color: var(--vermelho);
 }
+
+footer .qr-code {
+  margin-top: 10px;
+  width: 100px;
+  height: auto;
+}
+
+.footer-copy {
+  text-align: center;
+  font-size: 14px;
+  color: var(--cinza-claro);
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  padding-top: 15px;
+  margin-top: 20px;
+}
+
+/* Mobile layout */
+.footer-mobile-only {
+  display: none;
+  padding: 20px 16px;
+  background-color: #333333;
+  color: var(--branco);
+  text-align: center;
+}
+
+.footer-mobile-only img.footer-logo {
+  margin-bottom: 15px;
+}
+
+.footer-mobile-only .whatsapp-btn {
+  margin: 10px 0;
+  background-color: var(--vermelho);
+  color: var(--branco);
+  padding: 10px 20px;
+  text-decoration: none;
+  display: inline-block;
+  border-radius: 4px;
+  font-weight: bold;
+}
+
+.footer-mobile-only .partners-mobile {
+  margin-top: 20px;
+}
+
+.footer-mobile-only .partners-mobile ul {
+  list-style: none;
+  padding: 0;
+}
+
+.footer-mobile-only .partners-mobile ul li {
+  margin-bottom: 6px;
+  color: var(--branco);
+}
+
+/* Responsivo: alterna entre desktop e mobile */
+@media (max-width: 768px) {
+  .footer-container {
+    display: none;
+  }
+
+  .footer-mobile-only {
+    display: block;
+  }
+}
+
 
 /*-----------------------------------------------------------------------------  
   Responsivo – até 1024px  
@@ -517,8 +639,9 @@ footer a:hover {
   .hero::before {
     background: rgba(0, 0, 0, 0.6);
   }
-  .hero .container {
-    text-align: center;
+  .hero-content img{
+    position: absolute;
+    top: -198px;
   }
   .hero-content p {
     width: 100%;
@@ -548,6 +671,11 @@ footer a:hover {
   .card {
     padding: 16px;
   }
+  .corrimaos .cards .card:last-child img{
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+}
   .label {
     left: -16px;
   }

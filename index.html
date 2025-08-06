@@ -12,10 +12,11 @@
       rel="stylesheet"
     />
     <link rel="icon" href="favicon.ico" type="image/x-icon" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" />
     <script src="script.js" defer></script>
   </head>
   <body>
-    <header>
+    <header style="display: none;">
       <div class="container">
         <div class="logo">
           <img src="img/logo.png" alt="LF Serviços" />
@@ -34,14 +35,17 @@
     </header>
 
     <section class="hero">
-      <img src="img/cabina4.png" alt="" class="hero-bg">
+      <picture>
+        <source media="(max-width: 768px)" srcset="img/hero-mobile.png">
+        <img src="img/hero-desktop.png" alt="" class="hero-bg">
+      </picture>
       <div class="container hero-content">
-        <h1>Modernização de Elevadores</h1>
+        <img src="img/logo.png" alt="LF Serviços" />
+        <h1>Catálogo 2025</h1>
         <p>
-          Oferecemos soluções personalizadas para transformar e modernizar seus
-          elevadores, com foco em design, qualidade e segurança.
+          Oferecemos soluções personalizadas para transformar e modernizar seus elevadores, com foco em design, qualidade e segurança.
         </p>
-        <a href="#tetos" class="btn">Ver Catálogo</a>
+        <a href="#tetos" class="btn">Ver mais</a>
       </div>
     </section>
 
@@ -150,9 +154,8 @@
           <h2>PISOS</h2>
           <hr />
           <p class="description">
-            Projetos personalizados em design de pisos para elevadores, com uma
-            seleção premium de granitos, incluindo: Branco Dallas, Perla
-            Santana, Branco Ceará e Preto São Gabriel.
+            Projetos personalizados em design de pisos para elevadores, com uma seleção premium de granitos, incluindo: Branco Dallas, Perla Santana, Branco Ceará e Preto São Gabriel.
+          <blockquote>Também fornecemos somente a pedra de granito cortada sob medida, com ou sem serviço de medição no local, conforme a necessidade do cliente.</blockquote>
           </p>
         </div>
         
@@ -283,7 +286,7 @@
     <section id="corrimaos" class="corrimaos container">
       <div class="container">
         <div class="header">
-          <h2>CORRIMAOS</h2>
+          <h2>CORRIMÃOS</h2>
           <hr />
           <p class="description">
             Corrimãos sob medida, disponíveis em modelos tubulares, retangulares ou projetados para se adequar ao design específico. 
@@ -317,7 +320,7 @@
 
             <p>Corrimão retangular em aço inox.</p>
           </div>
-          <div class="card product-card" data-product="clf3">
+          <div class="card clf3 product-card" data-product="clf3">
             <div class="label">CLF3</div>
             <div class="image-container">
               <img src="img/corrimaos-clf3.png" alt="CLF3" class="main-image" />
@@ -336,10 +339,47 @@
 
     </section>
 <footer>
-      <div class="container">
-        <p>&copy; 2023 LF Serviços. Todos os direitos reservados.</p>
-        <p>Desenvolvido por <a href="https://www.linkedin.com/in/seu-perfil/" target="_blank">Seu Nome</a></p>
-    </footer>
+  <!-- Desktop layout -->
+  <div class="footer-container container">
+    <div class="footer-column logo-col">
+      <img src="img/logo.png" alt="LF Design" class="footer-logo" />
+    </div>
+
+    <div class="footer-column partners-col">
+      <h4>Empresas Parceiras</h4>
+      <ul>
+        <li>Atlas Schindler</li>
+        <li>Otis</li>
+      </ul>
+    </div>
+
+    <div class="footer-column contact-col">
+      <h4>Contato</h4>
+      <p><i class="fab fa-whatsapp"></i> (85) 9798-0306</p>
+      <img src="img/wa.png" alt="QR Code WhatsApp" class="qr-code" />
+    </div>
+  </div>
+
+  <!-- Mobile layout -->
+  <div class="footer-mobile-only">
+    <img src="img/logo.png" alt="LF Design" class="footer-logo" />
+    <a href="https://wa.me/5585997980306" class="btn whatsapp-btn">Fale conosco</a>
+
+    <div class="partners-mobile">
+      <h4>Empresas Parceiras</h4>
+      <ul>
+        <li>Atlas Schindler</li>
+        <li>Otis</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- Copyright -->
+  <p class="footer-copy">&copy; 2025 LF Design. Todos os direitos reservados.</p>
+</footer>
+
+
+
     <!-- Modal -->
     <div class="modal" id="productModal">
       <div class="modal-content">
@@ -350,6 +390,10 @@
           <button class="nav-button next">&gt;</button>
         </div>
         <div class="modal-indicators"></div>
+        <div class="modal-description">
+          <h3 class="modal-title"></h3>
+          <p class="modal-text"></p>
+        </div>
       </div>
     </div>
   </body>
