@@ -21,13 +21,16 @@
   padding: 0;
   box-sizing: border-box;
 }
-html, body {
+
+html,
+body {
   height: 100%;
   font-family: var(--fonte-principal);
   color: var(--preto);
   background-color: var(--branco);
   scroll-behavior: smooth;
 }
+
 .container {
   max-width: var(--max-width);
   width: 100%;
@@ -44,19 +47,23 @@ header {
   background-color: var(--preto);
   z-index: 999;
 }
+
 header .container {
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding: 20px 0;
 }
+
 .logo img {
   height: 25px;
   margin: 2px 10px 0 0;
 }
+
 nav {
   display: flex;
 }
+
 nav a {
   color: var(--branco);
   text-decoration: none;
@@ -75,6 +82,7 @@ nav a {
   padding: 5px;
   z-index: 1000;
 }
+
 .burger-menu span {
   display: block;
   width: 25px;
@@ -83,15 +91,19 @@ nav a {
   margin: 5px 0;
   transition: 0.4s;
 }
+
 .burger-menu.active span:nth-child(1) {
   transform: rotate(-45deg) translate(-5px, 6px);
 }
+
 .burger-menu.active span:nth-child(2) {
   opacity: 0;
 }
+
 .burger-menu.active span:nth-child(3) {
   transform: rotate(45deg) translate(-5px, -6px);
 }
+
 .mobile-only {
   display: none;
 }
@@ -107,8 +119,10 @@ nav a {
 
   /* adiciona: */
   display: flex;
-  align-items: center;        /* centraliza verticalmente */
-  justify-content: center;    /* opcional: centraliza horizontalmente */
+  align-items: center;
+  /* centraliza verticalmente */
+  justify-content: center;
+  /* opcional: centraliza horizontalmente */
 }
 
 .hero-bg {
@@ -116,27 +130,33 @@ nav a {
   inset: 0;
   width: 100%;
   height: 100%;
-  object-fit: cover;       /* preenche sem distorcer */
+  object-fit: cover;
+  /* preenche sem distorcer */
   transform: scale(1);
   transform-origin: center center;
-  will-change: transform;   /* dá um heads‑up ao navegador */
+  will-change: transform;
+  /* dá um heads‑up ao navegador */
 }
 
 .hero .container {
   position: relative;
   z-index: 1;
 }
+
 .hero-content {
   color: var(--branco);
 }
- .hero-content img{
-    position: absolute;
-    top: -133px;
-  }
+
+.hero-content img {
+  position: absolute;
+  top: -133px;
+}
+
 .hero-content h1 {
   font-size: 48px;
   margin-bottom: 20px;
 }
+
 .hero-content p {
   font-size: 27px;
   color: var(--cinza-claro);
@@ -162,17 +182,20 @@ nav a {
 .tetos {
   padding: 60px 0;
 }
+
 .tetos h2 {
   font-size: 32px;
   color: var(--cinza-texto);
   margin-bottom: 10px;
 }
+
 .tetos .description {
   font-size: 23px;
   font-style: italic;
   color: var(--cinza-texto);
   margin: 5px 0 40px;
 }
+
 .tetos .cards {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -186,16 +209,19 @@ nav a {
   background-color: var(--cinza-bg);
   padding: 20px;
 }
+
 .card.featured .content {
   flex: 1;
   padding-right: 20px;
 }
+
 .card.featured img {
   width: 658px;
   max-width: 100%;
   transform: scaleX(-1);
   margin: -94px -18px -19px 0;
 }
+
 .card.featured p {
   font-size: 27px;
 }
@@ -205,17 +231,20 @@ nav a {
   background-color: var(--cinza-bg);
   padding: 20px;
 }
+
 .card img {
   width: 100%;
   display: block;
   border-radius: 4px;
   transition: opacity 0.3s ease;
 }
+
 .image-container {
   position: relative;
   overflow: hidden;
   margin-bottom: 12px;
 }
+
 .angle-indicators {
   position: absolute;
   bottom: 10px;
@@ -225,6 +254,7 @@ nav a {
   gap: 8px;
   z-index: 2;
 }
+
 .angle-indicators span {
   width: 8px;
   height: 8px;
@@ -233,12 +263,15 @@ nav a {
   cursor: pointer;
   transition: background-color 0.3s ease;
 }
+
 .angle-indicators span.active {
   background: var(--vermelho);
 }
+
 .product-card {
   cursor: pointer;
 }
+
 .card p {
   font-size: 16px;
   color: var(--preto);
@@ -271,10 +304,12 @@ nav a {
   opacity: 0;
   transition: opacity 0.3s ease;
 }
+
 .modal.active {
   display: flex;
   opacity: 1;
 }
+
 .modal-content {
   position: relative;
   max-width: 90%;
@@ -284,6 +319,7 @@ nav a {
   background: var(--preto);
   border-radius: 8px;
 }
+
 .close-modal {
   position: absolute;
   top: 10px;
@@ -295,17 +331,20 @@ nav a {
   cursor: pointer;
   z-index: 1;
 }
+
 .modal-image-container {
   display: flex;
   align-items: center;
   justify-content: center;
 }
+
 .modal-image {
   max-width: 100%;
   max-height: 70vh;
   object-fit: contain;
   transition: opacity 0.3s ease;
 }
+
 .nav-button {
   position: absolute;
   top: 50%;
@@ -319,21 +358,26 @@ nav a {
   border-radius: 4px;
   transition: background 0.3s ease;
 }
+
 .nav-button.prev {
   left: 10px;
 }
+
 .nav-button.next {
   right: 10px;
 }
+
 .nav-button:hover {
   background: rgba(0, 0, 0, 0.8);
 }
+
 .modal-indicators {
   display: flex;
   justify-content: center;
   gap: 10px;
   margin-top: 15px;
 }
+
 .modal-indicators span {
   width: 10px;
   height: 10px;
@@ -342,9 +386,11 @@ nav a {
   cursor: pointer;
   transition: background-color 0.3s ease;
 }
+
 .modal-indicators span.active {
   background: var(--vermelho);
 }
+
 .modal-description {
   margin-top: 20px;
   padding: 20px;
@@ -352,11 +398,13 @@ nav a {
   border-radius: 4px;
   color: var(--branco);
 }
+
 .modal-title {
   font-size: 24px;
   margin-bottom: 10px;
   color: var(--vermelho);
 }
+
 .modal-text {
   font-size: 16px;
   line-height: 1.5;
@@ -370,25 +418,30 @@ nav a {
   padding: 60px 0;
   background-color: var(--cinza-claro);
 }
+
 .pisos .header {
   padding: 0 20px;
 }
+
 .pisos h2 {
   font-size: 32px;
   color: var(--cinza-texto);
   margin-bottom: 10px;
 }
+
 .pisos .description {
   font-size: 23px;
   font-style: italic;
   color: var(--cinza-texto);
   margin: 5px 0 40px;
 }
+
 .pisos .cards {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 20px;
 }
+
 .granitos-flex {
   display: flex;
   flex-wrap: wrap;
@@ -396,6 +449,7 @@ nav a {
   margin: 40px 0;
   padding: 0 16px;
 }
+
 .granito-card {
   flex: 1 1 calc(50% - 15px);
   min-width: 280px;
@@ -403,14 +457,17 @@ nav a {
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
   transition: transform 0.3s ease;
 }
+
 .granito-card:hover {
   transform: translateY(-5px);
 }
+
 .granito-img {
   position: relative;
   padding-top: 20%;
   overflow: hidden;
 }
+
 .granito-img img {
   position: absolute;
   top: 0;
@@ -419,6 +476,7 @@ nav a {
   height: 100%;
   object-fit: cover;
 }
+
 .granito-card h3 {
   padding: 15px;
   margin: 0;
@@ -435,31 +493,36 @@ nav a {
   padding: 60px 0;
   margin: 10px auto
 }
+
 .corrimaos h2 {
   font-size: 32px;
   color: var(--cinza-texto);
   margin-bottom: 10px;
 }
+
 .corrimaos .description {
   font-size: 23px;
   font-style: italic;
   color: var(--cinza-texto);
   margin: 5px 0 40px;
 }
+
 .corrimaos .cards {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 20px;
 }
+
 .corrimaos .cards .card:last-child {
   grid-column: 1 / -1;
 }
 
-.corrimaos .cards .card:last-child img{
+.corrimaos .cards .card:last-child img {
   height: 355px;
   object-fit: cover;
   object-position: center;
 }
+
 /*-----------------------------------------------------------------------------  
   Footer
 -----------------------------------------------------------------------------*/
@@ -478,7 +541,7 @@ footer {
   align-items: flex-start;
   flex-wrap: wrap;
   gap: 40px;
-  padding-bottom: 20px;
+  padding: 20px 50px;
 }
 
 .footer-column {
@@ -486,13 +549,17 @@ footer {
   min-width: 200px;
 }
 
+.contact-col {
+  text-align: right;
+}
+
 .footer-logo {
-   max-height: 100%;
+  max-height: 100%;
   max-width: 100%;
   height: auto;
   width: auto;
   display: block;
-  margin: 0 auto;
+  margin: 18px 0;
 }
 
 footer h4 {
@@ -543,6 +610,24 @@ footer .qr-code {
   text-align: center;
 }
 
+.footer-logo {
+  max-height: 100%;
+  max-width: 100%;
+  height: auto;
+  width: auto;
+  display: block;
+  margin: 18px 0;
+}
+
+.footer-description {
+  font-size: 16px;
+  color: var(--cinza-claro);
+  margin-bottom: 20px;
+  max-width: 300px;
+}   
+
+
+
 .footer-mobile-only img.footer-logo {
   margin-bottom: 15px;
 }
@@ -581,6 +666,23 @@ footer .qr-code {
   .footer-mobile-only {
     display: block;
   }
+
+  .footer-description {
+    font-size: 16px;
+    color: var(--cinza-claro);
+    margin-bottom: 20px;
+    max-width: 300px;
+    margin: 20px auto;
+  }
+
+  .footer-logo {
+  max-height: 100%;
+  max-width: 100%;
+  height: auto;
+  width: auto;
+  display: block;
+  margin: 18px auto;
+}
 }
 
 
@@ -591,9 +693,11 @@ footer .qr-code {
   .hero-content h1 {
     font-size: 36px;
   }
+
   .hero-content p {
     font-size: 16px;
   }
+
   .card.featured img {
     width: 300px;
   }
@@ -606,15 +710,19 @@ footer .qr-code {
   .mobile-only {
     display: block;
   }
+
   header .container {
     padding: 10px 16px;
   }
+
   .container {
     padding: 0 16px;
   }
+
   .burger-menu {
     display: block;
   }
+
   nav {
     position: fixed;
     top: 0;
@@ -628,32 +736,41 @@ footer .qr-code {
     align-items: center;
     transition: 0.4s;
   }
+
   nav.active {
     right: 0;
   }
+
   nav a {
     margin: 15px 0;
     font-size: 18px;
   }
+
   .hero {
     justify-content: center;
     padding: 0 16px;
     background-position: 70%;
   }
+
   .hero::before {
     background: rgba(0, 0, 0, 0.6);
   }
-  .hero-content img{
+
+  .hero-content img {
     position: absolute;
     top: -198px;
   }
+
   .hero-content p {
     width: 100%;
     font-size: 23px;
   }
-    .tetos, .corrimaos {
-      margin: 40px auto;
-    }
+
+  .tetos,
+  .corrimaos {
+    margin: 40px auto;
+  }
+
   .tetos .cards,
   .pisos .cards,
   .corrimaos .cards {
@@ -662,6 +779,7 @@ footer .qr-code {
     padding: 9px 16px;
     margin: 0 4px;
   }
+
   .tetos .cards .card,
   .pisos .cards .card,
   .corrimaos .cards .card {
@@ -669,27 +787,34 @@ footer .qr-code {
     scroll-snap-align: start;
     margin-right: 16px;
   }
+
   .card.featured {
     display: none !important;
   }
+
   .card {
     padding: 16px;
   }
-  .corrimaos .cards .card:last-child img{
-  height: 100%;
-  object-fit: cover;
-  object-position: center;
-}
+
+  .corrimaos .cards .card:last-child img {
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+  }
+
   .label {
     left: -16px;
   }
+
   .granitos-flex {
     padding: 0 8px;
   }
+
   .granito-card {
     flex: 1 1 100%;
     margin: 0 8px;
   }
+
   .granito-img {
     padding-top: 68px;
   }
