@@ -6,7 +6,7 @@
       },
       tlf2: {
         title: 'TLF2',
-        description: 'Design em aço inox, com quatro luminárias LED embutidas, laterais curvas microperfuradas e grade de ventilação central. Compatível apenas com cabines Neolift.'
+        description: 'Módulo central em aço inox, com quatro luminárias LED embutidas e grade de ventilação central. Compatível apenas com cabines Neolift.'
       },
       tlf3: {
         title: 'TLF3',
