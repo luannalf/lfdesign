@@ -651,6 +651,35 @@
 
     }
 
+    function buildFileName(){
+
+      const meses = [
+        'janeiro','fevereiro','marco','abril','maio','junho',
+        'julho','agosto','setembro','outubro','novembro','dezembro'
+      ];
+
+      const clienteRaw = document.getElementById('cliente').value;
+      const dataRaw    = document.getElementById('data').value;
+
+      // Substitui espaços por _ e remove caracteres inválidos em nomes de arquivo
+      const clienteFormatado = clienteRaw
+        .trim()
+        .replace(/\s+/g, '_')
+        .replace(/[\/\\:*?"<>|]/g, '');
+
+      const [ano, mes] = dataRaw.split('-');
+      const nomeMes    = meses[parseInt(mes, 10) - 1];
+
+      // Sufixo MMSS do momento da geração para evitar sobrescrita
+      const agora    = new Date();
+      const minutos  = String(agora.getMinutes()).padStart(2, '0');
+      const segundos = String(agora.getSeconds()).padStart(2, '0');
+      const sufixo   = `${minutos}${segundos}`;
+
+      return `${clienteFormatado}_${nomeMes}_${ano}-${sufixo}.pdf`;
+
+    }
+
     function populatePrintSheet(){
 
       const items = document.querySelectorAll('.item-card');
@@ -826,7 +855,7 @@
       doc.text('Jose de Arimateia Falcao', left, currentY + 29);
       doc.text('85 99849-2021', left, currentY + 34);
 
-      doc.save('orcamento.pdf');
+      doc.save(buildFileName());
 
     }
 
