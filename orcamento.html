@@ -494,6 +494,12 @@
 
     }
 
+    function formatNumber(value){
+      return Number(value).toLocaleString('pt-BR', {
+        maximumFractionDigits: 2
+      });
+    }
+
     function calculateTotal(){
 
       let totalGeral = 0;
@@ -573,7 +579,8 @@
               type="number"
               class="qtd"
               value="1"
-              min="1"
+              min="0.01"
+              step="0.01"
               required
               oninput="calculateTotal()"
             >
@@ -703,14 +710,14 @@
       items.forEach((item, index) => {
 
         const descricao = item.querySelector('.descricao').value;
-        const qtd = parseFloat(item.querySelector('.qtd').value);
-        const valor = parseFloat(item.querySelector('.valor').value);
+        const qtd = parseFloat(item.querySelector('.qtd').value) || 0;
+        const valor = parseFloat(item.querySelector('.valor').value) || 0;
         const total = qtd * valor;
         const row = document.createElement('tr');
         const values = [
           index + 1,
           descricao,
-          qtd,
+          formatNumber(qtd),
           formatCurrency(valor),
           formatCurrency(total)
         ];
@@ -819,8 +826,8 @@
       rows.forEach((item, index) => {
 
         const descricao = item.querySelector('.descricao').value;
-        const qtd = parseFloat(item.querySelector('.qtd').value);
-        const valor = parseFloat(item.querySelector('.valor').value);
+        const qtd = parseFloat(item.querySelector('.qtd').value) || 0;
+        const valor = parseFloat(item.querySelector('.valor').value) || 0;
         const total = qtd * valor;
         const descriptionLines = doc.splitTextToSize(descricao, 72);
         const rowHeight = Math.max(descriptionLines.length * 5, 8);
@@ -830,7 +837,7 @@
 
         doc.text(String(index + 1), left + 3, currentY, { align:'center' });
         doc.text(descriptionLines, left + 10, currentY);
-        doc.text(String(qtd), 119, currentY, { align:'center' });
+        doc.text(formatNumber(qtd), 119, currentY, { align:'center' });
         doc.text(formatCurrency(valor), 156, currentY, { align:'right' });
         doc.text(formatCurrency(total), right, currentY, { align:'right' });
         currentY += rowHeight - 8;
@@ -854,6 +861,9 @@
       doc.text('L. F. Servicos em Elevadores LTDA - ME', left, currentY + 24);
       doc.text('Jose de Arimateia Falcao', left, currentY + 29);
       doc.text('85 99849-2021', left, currentY + 34);
+      doc.line(108, currentY + 24, right, currentY + 24);
+      doc.text('Autorizado Por:', 108, currentY + 29);
+      doc.text('Data: ____/____/________', 150, currentY + 29);
 
       doc.save(buildFileName());
 
