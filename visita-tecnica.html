@@ -1,0 +1,687 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+  <title>LF Visita T&eacute;cnica</title>
+
+  <style>
+    *{
+      margin:0;
+      padding:0;
+      box-sizing:border-box;
+      font-family: Arial, Helvetica, sans-serif;
+    }
+
+    body{
+      background:#f3f3f3;
+      padding:20px;
+      color:#222;
+    }
+
+    .container{
+      max-width:700px;
+      margin:auto;
+    }
+
+    .card{
+      background:white;
+      padding:24px;
+      border-radius:16px;
+      box-shadow:0 4px 20px rgba(0,0,0,0.08);
+    }
+
+    .topo{
+      display:flex;
+      align-items:center;
+      gap:14px;
+      margin-bottom:30px;
+    }
+
+    .logo{
+      width:60px;
+    }
+
+    h1{
+      font-size:22px;
+    }
+
+    .sub{
+      color:#666;
+      font-size:14px;
+      margin-top:4px;
+    }
+
+    .section-title{
+      margin-top:28px;
+      margin-bottom:16px;
+      font-size:18px;
+      font-weight:bold;
+    }
+
+    .field{
+      margin-bottom:18px;
+    }
+
+    label{
+      display:block;
+      margin-bottom:8px;
+      font-size:14px;
+      font-weight:bold;
+    }
+
+    input,
+    textarea,
+    select{
+      width:100%;
+      padding:14px;
+      border:1px solid #dcdcdc;
+      border-radius:12px;
+      font-size:16px;
+      background:#fafafa;
+    }
+
+    textarea{
+      min-height:110px;
+      resize:vertical;
+    }
+
+    .hidden{
+      display:none;
+    }
+
+    .field-hint{
+      margin-top:8px;
+      color:#666;
+      font-size:13px;
+    }
+
+    .extra-card{
+      background:#fafafa;
+      border:1px solid #ececec;
+      padding:16px;
+      border-radius:14px;
+      margin-bottom:16px;
+    }
+
+    .extra-header{
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      margin-bottom:12px;
+    }
+
+    .extra-title{
+      font-weight:bold;
+    }
+
+    .remove-btn{
+      border:none;
+      background:#ff4d4d;
+      color:white;
+      padding:8px 12px;
+      border-radius:8px;
+      cursor:pointer;
+      font-size:13px;
+    }
+
+    .grid{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:12px;
+    }
+
+    .photo-list{
+      margin-top:12px;
+      color:#444;
+      font-size:14px;
+      line-height:1.5;
+    }
+
+    .btn{
+      width:100%;
+      border:none;
+      padding:18px;
+      border-radius:14px;
+      font-size:16px;
+      font-weight:bold;
+      cursor:pointer;
+    }
+
+    .btn-add{
+      background:#efefef;
+      margin-top:10px;
+      margin-bottom:26px;
+    }
+
+    .btn-pdf{
+      background:#111;
+      color:white;
+      margin-top:20px;
+    }
+
+    .btn-reset{
+      background:#dcdcdc;
+      color:#222;
+      margin-top:12px;
+    }
+
+    @media(max-width:600px){
+      body{
+        padding:12px;
+      }
+
+      .card{
+        padding:18px;
+      }
+
+      .grid{
+        grid-template-columns:1fr;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <div class="card">
+      <div class="topo">
+        <img
+          class="logo"
+          src="img/logo-lf.png"
+          alt="LF Servi&ccedil;os"
+        />
+
+        <div>
+          <h1>LF Servi&ccedil;os</h1>
+          <div class="sub">
+            Relat&oacute;rio de Visita T&eacute;cnica
+          </div>
+        </div>
+      </div>
+
+      <div class="section-title">
+        Dados da Visita
+      </div>
+
+      <div class="field">
+        <label>Data</label>
+        <input type="date" id="data" required>
+      </div>
+
+      <div class="field">
+        <label>Condom&iacute;nio</label>
+        <input type="text" id="condominio" required>
+      </div>
+
+      <div class="field">
+        <label>Endere&ccedil;o</label>
+        <textarea id="endereco" required></textarea>
+      </div>
+
+      <div class="grid">
+        <div class="field">
+          <label>Empresa solicitante</label>
+          <select id="empresa" required onchange="toggleOtherField('empresa', 'empresa-outros')">
+            <option value="">Selecione</option>
+            <option value="Atlas">Atlas</option>
+            <option value="Otis">Otis</option>
+            <option value="Outros">Outros</option>
+          </select>
+        </div>
+
+        <div class="field hidden" id="empresa-outros-field">
+          <label>Nome da empresa</label>
+          <input type="text" id="empresa-outros">
+        </div>
+      </div>
+
+      <div class="grid">
+        <div class="field">
+          <label>T&eacute;cnico respons&aacute;vel pela visita</label>
+          <select id="tecnico" required onchange="toggleOtherField('tecnico', 'tecnico-outros')">
+            <option value="">Selecione</option>
+            <option value="Luan Falcão">Luan Falcão</option>
+            <option value="Arimatéia Falcão">Arimatéia Falcão</option>
+            <option value="Evandro Fontenele">Evandro Fontenele</option>
+            <option value="Outros">Outros</option>
+          </select>
+        </div>
+
+        <div class="field hidden" id="tecnico-outros-field">
+          <label>Nome do t&eacute;cnico</label>
+          <input type="text" id="tecnico-outros">
+        </div>
+      </div>
+
+      <div class="field">
+        <label>Solicitante da visita</label>
+        <input type="text" id="solicitante" required>
+      </div>
+
+      <div class="field">
+        <label>Descri&ccedil;&atilde;o do motivo da visita</label>
+        <textarea id="motivo" required></textarea>
+      </div>
+
+      <div class="section-title">
+        Campos Espec&iacute;ficos
+      </div>
+
+      <div id="extra-fields-container"></div>
+
+      <button class="btn btn-add" onclick="addExtraField()">
+        + Adicionar Campo
+      </button>
+
+      <div class="section-title">
+        Fotos
+      </div>
+
+      <div class="field">
+        <label>Upload de fotos</label>
+        <input
+          type="file"
+          id="fotos"
+          accept="image/png,image/jpeg,.png,.jpg,.jpeg"
+          multiple
+          onchange="handlePhotoSelection()"
+        >
+        <div class="field-hint">
+          Apenas imagens PNG ou JPG. Voc&ecirc; pode selecionar v&aacute;rias fotos.
+        </div>
+        <div class="photo-list" id="photo-list"></div>
+      </div>
+
+      <button class="btn btn-pdf" onclick="generatePdf()">
+        GERAR PDF
+      </button>
+
+      <button class="btn btn-reset" onclick="resetForm()">
+        LIMPAR FORMULARIO
+      </button>
+    </div>
+  </div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/3.0.3/jspdf.umd.min.js"></script>
+
+  <script>
+    let extraFieldIndex = 0;
+    let selectedPhotos = [];
+
+    function toggleOtherField(selectId, inputId){
+      const select = document.getElementById(selectId);
+      const input = document.getElementById(inputId);
+      const wrapper = document.getElementById(`${inputId}-field`);
+      const isOther = select.value === 'Outros';
+
+      wrapper.classList.toggle('hidden', !isOther);
+      input.required = isOther;
+
+      if(!isOther){
+        input.value = '';
+      }
+    }
+
+    function getSelectValue(selectId, inputId){
+      const select = document.getElementById(selectId);
+
+      if(select.value === 'Outros'){
+        return document.getElementById(inputId).value.trim();
+      }
+
+      return select.value;
+    }
+
+    function addExtraField(){
+      extraFieldIndex++;
+
+      const container = document.getElementById('extra-fields-container');
+      const div = document.createElement('div');
+
+      div.classList.add('extra-card');
+      div.innerHTML = `
+        <div class="extra-header">
+          <div class="extra-title">Campo ${extraFieldIndex}</div>
+          <button class="remove-btn" onclick="removeExtraField(this)">
+            remover
+          </button>
+        </div>
+
+        <div class="field">
+          <label>Nome do campo</label>
+          <input type="text" class="extra-label" required>
+        </div>
+
+        <div class="field">
+          <label>Informa&ccedil;&atilde;o</label>
+          <textarea class="extra-value" required></textarea>
+        </div>
+      `;
+
+      container.appendChild(div);
+    }
+
+    function removeExtraField(button){
+      button.closest('.extra-card').remove();
+    }
+
+    function handlePhotoSelection(){
+      const input = document.getElementById('fotos');
+      const files = Array.from(input.files);
+      const validFiles = files.filter(file => {
+        const typeIsValid = file.type === 'image/png' || file.type === 'image/jpeg';
+        const extensionIsValid = /\.(png|jpe?g)$/i.test(file.name);
+
+        return typeIsValid && extensionIsValid;
+      });
+
+      if(validFiles.length !== files.length){
+        alert('Selecione apenas fotos em PNG ou JPG.');
+        input.value = '';
+        selectedPhotos = [];
+      }else{
+        selectedPhotos = validFiles;
+      }
+
+      renderPhotoList();
+    }
+
+    function renderPhotoList(){
+      const list = document.getElementById('photo-list');
+
+      list.innerHTML = '';
+
+      if(selectedPhotos.length === 0){
+        return;
+      }
+
+      selectedPhotos.forEach(file => {
+        const item = document.createElement('div');
+        item.innerText = file.name;
+        list.appendChild(item);
+      });
+    }
+
+    async function generatePdf(){
+      const requiredFields = document.querySelectorAll(
+        '#data, #condominio, #endereco, #empresa, #tecnico, #solicitante, #motivo, .extra-label, .extra-value'
+      );
+
+      for(const field of requiredFields){
+        if(!field.checkValidity()){
+          field.reportValidity();
+          field.focus();
+          return;
+        }
+      }
+
+      if(document.getElementById('empresa').value === 'Outros'){
+        const field = document.getElementById('empresa-outros');
+        if(!field.checkValidity()){
+          field.reportValidity();
+          field.focus();
+          return;
+        }
+      }
+
+      if(document.getElementById('tecnico').value === 'Outros'){
+        const field = document.getElementById('tecnico-outros');
+        if(!field.checkValidity()){
+          field.reportValidity();
+          field.focus();
+          return;
+        }
+      }
+
+      try{
+        await downloadPdf();
+      }catch(error){
+        alert('Nao foi possivel gerar o PDF. Verifique as imagens e tente novamente.');
+      }
+    }
+
+    function formatDate(value){
+      const [year, month, day] = value.split('-');
+      return `${day}/${month}/${year}`;
+    }
+
+    function buildFileName(){
+      const meses = [
+        'janeiro','fevereiro','marco','abril','maio','junho',
+        'julho','agosto','setembro','outubro','novembro','dezembro'
+      ];
+
+      const condominioRaw = document.getElementById('condominio').value;
+      const dataRaw = document.getElementById('data').value;
+      const condominioFormatado = condominioRaw
+        .trim()
+        .replace(/\s+/g, '_')
+        .replace(/[\/\\:*?"<>|]/g, '');
+
+      const [ano, mes] = dataRaw.split('-');
+      const nomeMes = meses[parseInt(mes, 10) - 1];
+      const agora = new Date();
+      const minutos = String(agora.getMinutes()).padStart(2, '0');
+      const segundos = String(agora.getSeconds()).padStart(2, '0');
+      const sufixo = `${minutos}${segundos}`;
+
+      return `visita_tecnica_${condominioFormatado}_${nomeMes}_${ano}-${sufixo}.pdf`;
+    }
+
+    async function downloadPdf(){
+      if(!window.jspdf){
+        alert('Nao foi possivel carregar o gerador de PDF. Verifique sua conexao e tente novamente.');
+        return;
+      }
+
+      const { jsPDF } = window.jspdf;
+      const doc = new jsPDF({
+        orientation:'portrait',
+        unit:'mm',
+        format:'a4'
+      });
+
+      const pageWidth = doc.internal.pageSize.getWidth();
+      const pageHeight = doc.internal.pageSize.getHeight();
+      const left = 22;
+      const right = pageWidth - 22;
+      const maxWidth = right - left;
+      let currentY = 24;
+
+      const logo = await imageToDataUrl('img/logo-lf.png');
+
+      doc.addImage(logo, 'PNG', left, 12, 24, 28);
+
+      doc.setFont('helvetica', 'bolditalic');
+      doc.setFontSize(11);
+      doc.text('LF Servicos em Elevadores LTDA', right, currentY, { align:'right' });
+      doc.text('CNPJ: 14.445.230/0001-79', right, currentY + 5, { align:'right' });
+      doc.text('Rua da Mangueira, 320 - 6286000', right, currentY + 10, { align:'right' });
+      doc.text('Pindoretama - Centro', right, currentY + 15, { align:'right' });
+      doc.text('85 99849 2021', right, currentY + 20, { align:'right' });
+
+      currentY = 54;
+      doc.setFont('helvetica', 'bold');
+      doc.setFontSize(11);
+      doc.text('VISITA TECNICA', left, currentY);
+      doc.text(formatDate(document.getElementById('data').value), right, currentY, { align:'right' });
+      doc.setDrawColor(140, 140, 140);
+      doc.line(left, currentY + 3, right, currentY + 3);
+
+      currentY += 12;
+      addInfoBlock(doc, 'Condominio', document.getElementById('condominio').value, left, currentY, maxWidth);
+      currentY += getTextHeight(doc, document.getElementById('condominio').value, maxWidth) + 8;
+
+      addInfoBlock(doc, 'Endereco', document.getElementById('endereco').value, left, currentY, maxWidth);
+      currentY += getTextHeight(doc, document.getElementById('endereco').value, maxWidth) + 10;
+
+      currentY = ensureSpace(doc, currentY, 45, pageHeight);
+      doc.setFont('helvetica', 'bold');
+      doc.text('DADOS DA SOLICITACAO', left, currentY);
+      doc.setDrawColor(220, 220, 220);
+      doc.line(left, currentY + 3, right, currentY + 3);
+      currentY += 12;
+
+      currentY = addLabelValueLine(doc, 'Empresa solicitante:', getSelectValue('empresa', 'empresa-outros'), left, currentY);
+      currentY = addLabelValueLine(doc, 'Tecnico responsavel:', getSelectValue('tecnico', 'tecnico-outros'), left, currentY);
+      currentY = addLabelValueLine(doc, 'Solicitante da visita:', document.getElementById('solicitante').value, left, currentY);
+
+      currentY += 6;
+      currentY = ensureSpace(doc, currentY, 35, pageHeight);
+      addInfoBlock(doc, 'Motivo da visita', document.getElementById('motivo').value, left, currentY, maxWidth);
+      currentY += getTextHeight(doc, document.getElementById('motivo').value, maxWidth) + 12;
+
+      const extras = Array.from(document.querySelectorAll('.extra-card'));
+      if(extras.length > 0){
+        currentY = ensureSpace(doc, currentY, 28, pageHeight);
+        doc.setFont('helvetica', 'bold');
+        doc.text('CAMPOS ESPECIFICOS', left, currentY);
+        doc.setDrawColor(220, 220, 220);
+        doc.line(left, currentY + 3, right, currentY + 3);
+        currentY += 12;
+
+        extras.forEach(extra => {
+          const label = extra.querySelector('.extra-label').value;
+          const value = extra.querySelector('.extra-value').value;
+          const blockHeight = getTextHeight(doc, value, maxWidth) + 12;
+
+          currentY = ensureSpace(doc, currentY, blockHeight, pageHeight);
+          addInfoBlock(doc, label, value, left, currentY, maxWidth);
+          currentY += blockHeight;
+        });
+      }
+
+      if(selectedPhotos.length > 0){
+        currentY = ensureSpace(doc, currentY, 26, pageHeight);
+        doc.setFont('helvetica', 'bold');
+        doc.text('FOTOS DA VISITA', left, currentY);
+        doc.setDrawColor(220, 220, 220);
+        doc.line(left, currentY + 3, right, currentY + 3);
+        currentY += 12;
+
+        for(const [index, photo] of selectedPhotos.entries()){
+          const imageData = await fileToDataUrl(photo);
+          const props = doc.getImageProperties(imageData);
+          const ratio = props.width / props.height;
+          let imageWidth = maxWidth;
+          let imageHeight = imageWidth / ratio;
+
+          if(imageHeight > 120){
+            imageHeight = 120;
+            imageWidth = imageHeight * ratio;
+          }
+
+          currentY = ensureSpace(doc, currentY, imageHeight + 14, pageHeight);
+          doc.setFont('helvetica', 'bold');
+          doc.setFontSize(10);
+          doc.text(`Foto ${index + 1}`, left, currentY);
+          currentY += 5;
+          doc.addImage(imageData, getImageFormat(photo), left, currentY, imageWidth, imageHeight);
+          currentY += imageHeight + 9;
+        }
+      }
+
+      currentY = ensureSpace(doc, currentY, 38, pageHeight);
+      doc.setFont('helvetica', 'italic');
+      doc.setFontSize(10);
+      doc.text('Atenciosamente', left, currentY);
+      doc.setFont('helvetica', 'normal');
+      doc.text('L. F. Servicos em Elevadores LTDA - ME', left, currentY + 10);
+      doc.text('85 99849-2021', left, currentY + 15);
+      doc.line(108, currentY + 10, right, currentY + 10);
+      doc.text('Responsavel pela visita:', 108, currentY + 15);
+      doc.text(getSelectValue('tecnico', 'tecnico-outros'), 108, currentY + 20);
+
+      doc.save(buildFileName());
+    }
+
+    function addInfoBlock(doc, label, value, x, y, maxWidth){
+      doc.setFont('helvetica', 'bold');
+      doc.setFontSize(10);
+      doc.text(label, x, y);
+      doc.setFont('helvetica', 'normal');
+      doc.text(doc.splitTextToSize(value, maxWidth), x, y + 6);
+    }
+
+    function addLabelValueLine(doc, label, value, x, y){
+      doc.setFont('helvetica', 'bold');
+      doc.setFontSize(10);
+      doc.text(label, x, y);
+      doc.setFont('helvetica', 'normal');
+      doc.text(value, x + 43, y);
+
+      return y + 7;
+    }
+
+    function getTextHeight(doc, value, maxWidth){
+      const lines = doc.splitTextToSize(value || '', maxWidth);
+
+      return Math.max(lines.length * 5, 5);
+    }
+
+    function ensureSpace(doc, currentY, neededHeight, pageHeight){
+      if(currentY + neededHeight <= pageHeight - 22){
+        return currentY;
+      }
+
+      doc.addPage();
+      return 24;
+    }
+
+    function getImageFormat(file){
+      return file.type === 'image/png' ? 'PNG' : 'JPEG';
+    }
+
+    function imageToDataUrl(src){
+      return new Promise((resolve, reject) => {
+        const image = new Image();
+
+        image.onload = () => {
+          const canvas = document.createElement('canvas');
+          canvas.width = image.naturalWidth;
+          canvas.height = image.naturalHeight;
+
+          const context = canvas.getContext('2d');
+          context.drawImage(image, 0, 0);
+
+          resolve(canvas.toDataURL('image/png'));
+        };
+
+        image.onerror = reject;
+        image.src = src;
+      });
+    }
+
+    function fileToDataUrl(file){
+      return new Promise((resolve, reject) => {
+        const reader = new FileReader();
+
+        reader.onload = () => resolve(reader.result);
+        reader.onerror = reject;
+        reader.readAsDataURL(file);
+      });
+    }
+
+    function resetForm(){
+      document.getElementById('data').value = '';
+      document.getElementById('condominio').value = '';
+      document.getElementById('endereco').value = '';
+      document.getElementById('empresa').value = '';
+      document.getElementById('empresa-outros').value = '';
+      document.getElementById('tecnico').value = '';
+      document.getElementById('tecnico-outros').value = '';
+      document.getElementById('solicitante').value = '';
+      document.getElementById('motivo').value = '';
+      document.getElementById('fotos').value = '';
+      document.getElementById('extra-fields-container').innerHTML = '';
+      selectedPhotos = [];
+      extraFieldIndex = 0;
+      toggleOtherField('empresa', 'empresa-outros');
+      toggleOtherField('tecnico', 'tecnico-outros');
+      renderPhotoList();
+    }
+  </script>
+</body>
+</html>
