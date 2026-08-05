@@ -438,7 +438,8 @@
       try{
         await downloadPdf();
       }catch(error){
-        alert('Nao foi possivel gerar o PDF. Verifique as imagens e tente novamente.');
+        console.error(error);
+        alert(error.message || 'Nao foi possivel gerar o PDF. Verifique as imagens e tente novamente.');
       }
     }
 
@@ -562,7 +563,7 @@
         currentY += 12;
 
         for(const [index, photo] of selectedPhotos.entries()){
-          const imageData = await fileToDataUrl(photo);
+          const imageData = await fileToJpegDataUrl(photo);
           const props = doc.getImageProperties(imageData);
           const ratio = props.width / props.height;
           let imageWidth = maxWidth;
@@ -578,7 +579,7 @@
           doc.setFontSize(10);
           doc.text(`Foto ${index + 1}`, left, currentY);
           currentY += 5;
-          doc.addImage(imageData, getImageFormat(photo), left, currentY, imageWidth, imageHeight);
+          doc.addImage(imageData, 'JPEG', left, currentY, imageWidth, imageHeight);
           currentY += imageHeight + 9;
         }
       }
@@ -587,14 +588,40 @@
       doc.setFont('helvetica', 'italic');
       doc.setFontSize(10);
       doc.text('Atenciosamente', left, currentY);
+
+      const signaturePath = getSignaturePath();
+      if(signaturePath){
+        try{
+          const signature = await imageToDataUrl(signaturePath);
+          doc.addImage(signature, 'PNG', left, currentY + 5, 42, 12);
+        }catch(error){
+          console.warn('Nao foi possivel carregar a assinatura selecionada.', error);
+        }
+      }
+
       doc.setFont('helvetica', 'normal');
-      doc.text('L. F. Servicos em Elevadores LTDA - ME', left, currentY + 10);
-      doc.text('85 99849-2021', left, currentY + 15);
-      doc.line(108, currentY + 10, right, currentY + 10);
-      doc.text('Responsavel pela visita:', 108, currentY + 15);
-      doc.text(getSelectValue('tecnico', 'tecnico-outros'), 108, currentY + 20);
+      doc.text(getSelectValue('tecnico', 'tecnico-outros'), left, currentY + 24);
+      doc.text('L. F. Servicos em Elevadores LTDA', left, currentY + 32);
+      doc.text('85 99849-2021', left, currentY + 37);
 
       doc.save(buildFileName());
+    }
+
+    function getSignaturePath(){
+      const tecnico = getSelectValue('tecnico', 'tecnico-outros')
+        .normalize('NFD')
+        .replace(/[\u0300-\u036f]/g, '')
+        .toLowerCase();
+
+      if(tecnico === 'arimateia falcao' || tecnico === 'arimateia'){
+        return 'img/assinatura-ari.png';
+      }
+
+      if(tecnico === 'luan falcao' || tecnico === 'luan'){
+        return 'img/assinatura-luan.png';
+      }
+
+      return '';
     }
 
     function addInfoBlock(doc, label, value, x, y, maxWidth){
@@ -630,10 +657,6 @@
       return 24;
     }
 
-    function getImageFormat(file){
-      return file.type === 'image/png' ? 'PNG' : 'JPEG';
-    }
-
     function imageToDataUrl(src){
       return new Promise((resolve, reject) => {
         const image = new Image();
@@ -654,13 +677,37 @@
       });
     }
 
-    function fileToDataUrl(file){
+    function fileToJpegDataUrl(file){
       return new Promise((resolve, reject) => {
-        const reader = new FileReader();
+        const image = new Image();
+        const objectUrl = URL.createObjectURL(file);
 
-        reader.onload = () => resolve(reader.result);
-        reader.onerror = reject;
-        reader.readAsDataURL(file);
+        image.onload = () => {
+          const maxDimension = 1600;
+          const scale = Math.min(
+            1,
+            maxDimension / Math.max(image.naturalWidth, image.naturalHeight)
+          );
+          const canvas = document.createElement('canvas');
+
+          canvas.width = Math.max(1, Math.round(image.naturalWidth * scale));
+          canvas.height = Math.max(1, Math.round(image.naturalHeight * scale));
+
+          const context = canvas.getContext('2d');
+          context.fillStyle = '#ffffff';
+          context.fillRect(0, 0, canvas.width, canvas.height);
+          context.drawImage(image, 0, 0, canvas.width, canvas.height);
+          URL.revokeObjectURL(objectUrl);
+
+          resolve(canvas.toDataURL('image/jpeg', 0.88));
+        };
+
+        image.onerror = () => {
+          URL.revokeObjectURL(objectUrl);
+          reject(new Error(`Nao foi possivel carregar a foto ${file.name}.`));
+        };
+
+        image.src = objectUrl;
       });
     }
 
