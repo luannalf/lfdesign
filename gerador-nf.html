@@ -216,6 +216,11 @@
       </div>
 
       <div>
+        <label class="label-accent">Equipamento</label>
+        <input id="equipamento" type="text" placeholder="25265956" autocomplete="off" />
+      </div>
+
+      <div>
         <label class="label-accent">Cliente</label>
         <input id="cliente" type="text" placeholder="Nome do cliente" autocomplete="off" />
       </div>
@@ -340,7 +345,7 @@
     const copiedFlash = document.getElementById('copiedFlash');
 
     function validateFields(data){
-      const fields = ['pedido','num_nf','valor','cliente','cidadeuf','servico','vencimento'];
+      const fields = ['pedido','num_nf','valor','equipamento','cliente','cidadeuf','servico','vencimento'];
       let ok = true;
       fields.forEach(id=>{
         const el = document.getElementById(id);
@@ -402,13 +407,13 @@
 
     function generateTexts(data){
       // TEXT 1
-      const t1 = `Pedido: ${data.pedido} Valor: ${data.valor} - ${data.cliente} - ${data.cidadeuf} - ${data.servico} - Vencimento da nota fiscal - ${data.vencimento}`;
+      const t1 = `Pedido: ${data.pedido} Valor: ${data.valor} - Equipamento: ${data.equipamento} - ${data.cliente} - ${data.cidadeuf} - ${data.servico} - Vencimento da nota fiscal - ${data.vencimento}`;
       // TEXT 2
       const clienteUp = data.cliente.toUpperCase();
       const servicoUp = data.servico.toUpperCase();
-      const t2 = `NF ${data.num_nf} ${clienteUp} - ${servicoUp} - PEDIDO ${data.pedido}`;
+      const t2 = `NF ${data.num_nf} EQUIPAMENTO ${data.equipamento} - ${clienteUp} - ${servicoUp} - PEDIDO ${data.pedido}.pdf`;
       // TEXT 3
-      const t3 = `PAGAMENTO DA NF ${data.num_nf} ${clienteUp} - ${servicoUp} - PEDIDO ${data.pedido}`;
+      const t3 = `PAGAMENTO DA NF ${data.num_nf} EQUIPAMENTO: ${data.equipamento} - ${clienteUp} - ${servicoUp} - PEDIDO ${data.pedido}`;
       return [t1,t2,t3];
     }
 
@@ -417,15 +422,16 @@
       const pedido = document.getElementById('pedido').value.trim();
       const num_nf = document.getElementById('num_nf').value.trim();
       const valorFmt = getNumericValor();
+      const equipamento = document.getElementById('equipamento').value.trim();
       const cliente = document.getElementById('cliente').value.trim();
       const cidadeuf = document.getElementById('cidadeuf').value.trim();
       const servico = document.getElementById('servico').value.trim();
       const venc = document.getElementById('vencimento').value;
       const vencFmt = formatDateBR(venc);
 
-      const data = {pedido, num_nf, valor: valorFmt, cliente, cidadeuf, servico, vencimento: vencFmt};
+      const data = {pedido, num_nf, valor: valorFmt, equipamento, cliente, cidadeuf, servico, vencimento: vencFmt};
 
-      if(!validateFields({pedido, num_nf, valor:valorFmt, cliente, cidadeuf, servico, vencimento:venc})){
+      if(!validateFields({pedido, num_nf, valor:valorFmt, equipamento, cliente, cidadeuf, servico, vencimento:venc})){
         msg.style.display='block';
         msg.textContent = 'Por favor, preencha todos os campos.';
         return;
@@ -453,7 +459,7 @@
     });
 
     // small accessibility: pressing Enter on any field triggers generate
-    ['pedido','num_nf','valor','cliente','cidadeuf','servico','vencimento'].forEach(id=>{
+    ['pedido','num_nf','valor','equipamento','cliente','cidadeuf','servico','vencimento'].forEach(id=>{
       const el = document.getElementById(id);
       el.addEventListener('keydown', (e)=>{
         if(e.key === 'Enter'){
