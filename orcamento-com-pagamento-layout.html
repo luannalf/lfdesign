@@ -1,0 +1,1332 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+  <title>LF Orçamentos</title>
+
+  <style>
+
+    *{
+      margin:0;
+      padding:0;
+      box-sizing:border-box;
+      font-family: Arial, Helvetica, sans-serif;
+    }
+
+    body{
+      background:#f3f3f3;
+      padding:20px;
+      color:#222;
+    }
+
+    .container{
+      max-width:700px;
+      margin:auto;
+    }
+
+    .card{
+      background:white;
+      padding:24px;
+      border-radius:16px;
+      box-shadow:0 4px 20px rgba(0,0,0,0.08);
+    }
+
+    .topo{
+      display:flex;
+      align-items:center;
+      gap:14px;
+      margin-bottom:30px;
+    }
+
+    .logo{
+      width:60px;
+    }
+
+    h1{
+      font-size:22px;
+    }
+
+    .sub{
+      color:#666;
+      font-size:14px;
+      margin-top:4px;
+    }
+
+    .section-title{
+      margin-top:28px;
+      margin-bottom:16px;
+      font-size:18px;
+      font-weight:bold;
+    }
+
+    .field{
+      margin-bottom:18px;
+    }
+
+    label{
+      display:block;
+      margin-bottom:8px;
+      font-size:14px;
+      font-weight:bold;
+    }
+
+    input,
+    textarea{
+      width:100%;
+      padding:14px;
+      border:1px solid #dcdcdc;
+      border-radius:12px;
+      font-size:16px;
+      background:#fafafa;
+    }
+
+    textarea{
+      min-height:90px;
+      resize:vertical;
+    }
+
+    .item-card{
+      background:#fafafa;
+      border:1px solid #ececec;
+      padding:16px;
+      border-radius:14px;
+      margin-bottom:16px;
+    }
+
+    .item-header{
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      margin-bottom:12px;
+    }
+
+    .item-title{
+      font-weight:bold;
+    }
+
+    .remove-btn{
+      border:none;
+      background:#ff4d4d;
+      color:white;
+      padding:8px 12px;
+      border-radius:8px;
+      cursor:pointer;
+      font-size:13px;
+    }
+
+    .grid{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:12px;
+    }
+
+    .total-item{
+      margin-top:12px;
+      font-weight:bold;
+      font-size:16px;
+    }
+
+    .btn{
+      width:100%;
+      border:none;
+      padding:18px;
+      border-radius:14px;
+      font-size:16px;
+      font-weight:bold;
+      cursor:pointer;
+    }
+
+    .btn-add{
+      background:#efefef;
+      margin-top:10px;
+      margin-bottom:26px;
+    }
+
+    .btn-pdf{
+      background:#111;
+      color:white;
+      margin-top:20px;
+    }
+
+    .btn-reset{
+      background:#dcdcdc;
+      color:#222;
+      margin-top:12px;
+    }
+
+    .total-geral{
+      margin-top:24px;
+      background:#fafafa;
+      border-radius:14px;
+      padding:20px;
+      font-size:22px;
+      font-weight:bold;
+      text-align:right;
+    }
+
+    .print-sheet{
+      display:none;
+    }
+
+    @media print{
+
+      body{
+        background:white;
+        padding:0;
+      }
+
+      .container{
+        max-width:none;
+        margin:0;
+      }
+
+      .card{
+        display:none;
+      }
+
+      .print-sheet{
+        display:block;
+        width:100%;
+        min-height:100vh;
+        padding:0 28px 28px;
+        color:#202427;
+        font-size:11px;
+      }
+
+      .print-header{
+        display:flex;
+        justify-content:space-between;
+        align-items:center;
+        margin:0 -28px 24px;
+        padding:18px 28px;
+        min-height:92px;
+        background:#252d31;
+        color:white;
+      }
+
+      .print-brand{
+        display:flex;
+        align-items:center;
+        gap:12px;
+      }
+
+      .print-logo{
+        width:54px;
+        height:54px;
+        object-fit:contain;
+        display:block;
+      }
+
+      .print-brand-name{
+        font-size:18px;
+        font-weight:bold;
+        letter-spacing:2px;
+      }
+
+      .print-brand-subtitle{
+        margin-top:4px;
+        font-size:11px;
+        letter-spacing:3px;
+      }
+
+      .print-company{
+        border-left:1px solid #b8bec0;
+        padding-left:18px;
+        line-height:1.45;
+        font-size:11px;
+      }
+
+      .print-title-row{
+        display:flex;
+        justify-content:space-between;
+        align-items:flex-end;
+        margin-bottom:16px;
+      }
+
+      .print-kicker{
+        color:#e52d38;
+        font-size:11px;
+        font-weight:bold;
+        letter-spacing:3px;
+      }
+
+      .print-title{
+        margin-top:4px;
+        font-size:30px;
+        line-height:1;
+        letter-spacing:1px;
+      }
+
+      .print-title-line{
+        display:inline-block;
+        width:76px;
+        margin:0 0 5px 8px;
+        border-top:2px solid #e52d38;
+      }
+
+      .print-subtitle{
+        margin-top:6px;
+        color:#7d8589;
+        font-size:11px;
+        letter-spacing:1.5px;
+      }
+
+      .print-date-box{
+        padding-left:18px;
+        border-left:1px solid #c9cdce;
+        min-width:100px;
+      }
+
+      .print-date-label,
+      .print-client-label{
+        color:#60696d;
+        font-size:10px;
+        letter-spacing:2px;
+      }
+
+      .print-date-box strong{
+        display:block;
+        margin-top:5px;
+        font-size:14px;
+      }
+
+      .print-client-box{
+        display:grid;
+        grid-template-columns:1fr 1fr;
+        gap:22px;
+        padding:14px 18px;
+        background:#f0f2f2;
+      }
+
+      .print-client{
+        margin-top:5px;
+        font-size:13px;
+        font-weight:bold;
+      }
+
+      .print-address{
+        margin-top:5px;
+        line-height:1.35;
+        font-size:13px;
+        white-space:pre-line;
+      }
+
+      .print-objective{
+        margin-top:20px;
+        padding-left:12px;
+        border-left:5px solid #e52d38;
+      }
+
+      .print-objective-title,
+      .print-services-title{
+        margin-bottom:7px;
+        font-size:13px;
+        font-weight:bold;
+      }
+
+      .print-objective-text{
+        line-height:1.4;
+        font-size:13px;
+      }
+
+      .print-services{
+        margin-top:22px;
+      }
+
+      .print-services-title{
+        padding-left:12px;
+        border-left:5px solid #e52d38;
+      }
+
+      .print-table{
+        width:100%;
+        border-collapse:collapse;
+      }
+
+      .print-table th{
+        padding:10px 6px;
+        background:#eef0f0;
+        text-align:left;
+        font-size:12px;
+      }
+
+      .print-table td{
+        padding:8px 6px;
+        border-bottom:1px solid #d3d7d8;
+        vertical-align:top;
+        line-height:1.3;
+        font-size:12px;
+      }
+
+      .print-table th:nth-child(1),
+      .print-table td:nth-child(1){
+        width:32px;
+        text-align:center;
+      }
+
+      .print-table th:nth-child(3),
+      .print-table td:nth-child(3){
+        width:62px;
+        text-align:center;
+      }
+
+      .print-table th:nth-child(4),
+      .print-table td:nth-child(4),
+      .print-table th:nth-child(5),
+      .print-table td:nth-child(5){
+        width:112px;
+        text-align:right;
+      }
+
+      .print-total-row td{
+        padding:10px 6px;
+        background:#252d31;
+        border:0;
+        color:white;
+        font-weight:bold;
+      }
+
+      .print-total-row td:first-child{
+        text-align:right;
+      }
+
+      .print-total-row td:last-child{
+        background:#e52d38;
+        font-size:13px;
+      }
+
+      .print-payment{
+        display:grid;
+        grid-template-columns:1fr 1fr;
+        gap:18px;
+        margin-top:14px;
+      }
+
+      .print-payment-card{
+        min-height:82px;
+        padding:14px 16px;
+        background:#f0f2f2;
+      }
+
+      .print-payment-title{
+        margin-bottom:10px;
+        padding-left:10px;
+        border-left:4px solid #e52d38;
+        font-size:13px;
+      }
+
+      .print-payment-text{
+        line-height:1.45;
+        font-size:12px;
+        white-space:pre-line;
+      }
+
+      .print-signature{
+        display:grid;
+        grid-template-columns:1fr 1fr;
+        column-gap:32px;
+        margin-top:18px;
+      }
+
+      .print-signature-intro{
+        grid-column:1 / -1;
+        margin-bottom:4px;
+        font-style:italic;
+      }
+
+      .print-signature-mark{
+        margin:5px 0 2px;
+        width:120px;
+        height:34px;
+        object-fit:contain;
+        object-position:left center;
+        display:block;
+      }
+
+      .print-footer{
+        border-top:1px solid #555;
+        padding-top:5px;
+        line-height:1.45;
+        font-size:12px;
+      }
+
+      .print-authorized{
+        align-self:end;
+        border-top:1px solid #555;
+        padding-top:5px;
+        font-size:12px;
+      }
+
+    }
+
+    @media(max-width:600px){
+
+      body{
+        padding:12px;
+      }
+
+      .card{
+        padding:18px;
+      }
+
+      .grid{
+        grid-template-columns:1fr;
+      }
+
+    }
+
+  </style>
+</head>
+
+<body>
+
+  <div class="container">
+
+    <div class="card">
+
+      <div class="topo">
+
+        <img
+          class="logo"
+          src="img/logo-only.png"
+          alt="LF Serviços"
+        />
+
+        <div>
+          <h1>LF Serviços</h1>
+          <div class="sub">
+            Gerador de Orçamentos
+          </div>
+        </div>
+
+      </div>
+
+      <div class="section-title">
+        Dados do Cliente
+      </div>
+
+      <div class="field">
+        <label>Data</label>
+        <input type="date" id="data" required>
+      </div>
+
+      <div class="field">
+        <label>Cliente</label>
+        <input type="text" id="cliente" required>
+      </div>
+
+      <div class="field">
+        <label>Endereço</label>
+        <textarea id="endereco" required></textarea>
+      </div>
+
+      <div class="field">
+        <label>Objetivo</label>
+        <textarea id="objetivo" required></textarea>
+      </div>
+
+      <div class="field">
+        <label>Condição de pagamento</label>
+        <textarea
+          id="condicao-pagamento"
+          placeholder="Ex.: 50% de entrada na aprovação e 50% na conclusão"
+          required
+        ></textarea>
+      </div>
+
+      <div class="field">
+        <label>Forma de pagamento</label>
+        <textarea
+          id="forma-pagamento"
+          placeholder="Ex.: PIX, banco ou outra forma combinada"
+          required
+        ></textarea>
+      </div>
+
+      <div class="section-title">
+        Itens do Orçamento
+      </div>
+
+      <div id="items-container"></div>
+
+      <button class="btn btn-add" onclick="addItem()">
+        + Adicionar Item
+      </button>
+
+      <div class="total-geral">
+        Total Geral:
+        <span id="total-geral">
+          R$ 0,00
+        </span>
+      </div>
+
+      <button class="btn btn-pdf" onclick="generatePdf()">
+        GERAR PDF
+      </button>
+
+      <button class="btn btn-reset" onclick="resetForm()">
+        LIMPAR FORMULARIO
+      </button>
+
+    </div>
+
+  </div>
+
+  <section class="print-sheet">
+
+    <div class="print-header">
+
+      <div class="print-brand">
+        <img class="print-logo" src="img/logo-only.png" alt="LF Servicos">
+        <div>
+          <div class="print-brand-name">LF SERVIÇOS</div>
+          <div class="print-brand-subtitle">EM ELEVADORES</div>
+        </div>
+      </div>
+
+      <div class="print-company">
+        <strong>LF Serviços em Elevadores LTDA</strong>
+        <div>CNPJ: 14.445.230/0001-79</div>
+        <div>Rua da Mangueira, 320 - 62860000</div>
+        <div>Pindoretama - Centro</div>
+        <div>85 99849 2021</div>
+      </div>
+
+    </div>
+
+    <div class="print-title-row">
+      <div>
+        <div class="print-kicker">PROPOSTA COMERCIAL <span class="print-title-line"></span></div>
+        <div class="print-title">ORÇAMENTO</div>
+        <div class="print-subtitle">SOLUÇÕES EM ELEVADORES COM MAIS SEGURANÇA E VALOR</div>
+      </div>
+      <div class="print-date-box">
+        <div class="print-date-label">DATA</div>
+        <strong id="print-date"></strong>
+      </div>
+    </div>
+
+    <div class="print-client-box">
+      <div>
+        <div class="print-client-label">CLIENTE</div>
+        <div class="print-client" id="print-client"></div>
+        <div class="print-address" id="print-address"></div>
+      </div>
+    </div>
+
+    <div class="print-objective">
+      <div class="print-objective-title">Objetivo</div>
+      <div class="print-objective-text" id="print-objective"></div>
+    </div>
+
+    <div class="print-services">
+      <div class="print-services-title">DESCRIÇÃO DOS SERVIÇOS</div>
+
+      <table class="print-table">
+        <thead>
+          <tr>
+            <th>Item</th>
+            <th>Descrição</th>
+            <th>Qtde</th>
+            <th>Preço Unitário</th>
+            <th>Preço total</th>
+          </tr>
+        </thead>
+        <tbody id="print-items"></tbody>
+        <tfoot>
+          <tr class="print-total-row">
+            <td colspan="4">TOTAL GERAL</td>
+            <td id="print-total"></td>
+          </tr>
+        </tfoot>
+      </table>
+    </div>
+
+    <div class="print-payment">
+      <div class="print-payment-card">
+        <div class="print-payment-title">CONDIÇÃO DE PAGAMENTO</div>
+        <div class="print-payment-text" id="print-condicao-pagamento"></div>
+      </div>
+      <div class="print-payment-card">
+        <div class="print-payment-title">FORMA DE PAGAMENTO</div>
+        <div class="print-payment-text" id="print-forma-pagamento"></div>
+      </div>
+    </div>
+
+    <div class="print-signature">
+      <div class="print-signature-intro">Atenciosamente</div>
+      <img class="print-signature-mark" src="img/assinatura.png" alt="Assinatura">
+      <div class="print-footer">
+        <div>L. F. Servicos em Elevadores LTDA</div>
+        <div>Jose de Arimateia Falcao</div>
+        <div>85 99849-2021</div>
+      </div>
+      <div class="print-authorized">
+        Autorizado Por: ____________________ &nbsp;&nbsp; Data: ____/____/________
+      </div>
+    </div>
+
+  </section>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/3.0.3/jspdf.umd.min.js"></script>
+
+  <script>
+
+    let itemIndex = 0;
+
+    function formatCurrency(value){
+
+      return value.toLocaleString('pt-BR', {
+        style:'currency',
+        currency:'BRL'
+      });
+
+    }
+
+    function formatNumber(value){
+      return Number(value).toLocaleString('pt-BR', {
+        maximumFractionDigits: 2
+      });
+    }
+
+    function calculateTotal(){
+
+      let totalGeral = 0;
+
+      const items = document.querySelectorAll('.item-card');
+
+      items.forEach(item => {
+
+        const qtd =
+          parseFloat(
+            item.querySelector('.qtd').value
+          ) || 0;
+
+        const valor =
+          parseFloat(
+            item.querySelector('.valor').value
+          ) || 0;
+
+        const total = qtd * valor;
+
+        item.querySelector('.total-item-value').innerText =
+          formatCurrency(total);
+
+        totalGeral += total;
+
+      });
+
+      document.getElementById('total-geral').innerText =
+        formatCurrency(totalGeral);
+
+    }
+
+    function addItem(){
+
+      itemIndex++;
+      const removeButton = itemIndex > 1
+        ? `
+          <button
+            class="remove-btn"
+            onclick="removeItem(this)"
+          >
+            remover
+          </button>
+        `
+        : '';
+
+      const container =
+        document.getElementById('items-container');
+
+      const div = document.createElement('div');
+
+      div.classList.add('item-card');
+
+      div.innerHTML = `
+
+        <div class="item-header">
+
+          <div class="item-title">
+            Item ${itemIndex}
+          </div>
+
+          ${removeButton}
+
+        </div>
+
+        <div class="field">
+          <label>Descrição</label>
+          <textarea class="descricao" required></textarea>
+        </div>
+
+        <div class="grid">
+
+          <div class="field">
+            <label>Quantidade</label>
+
+            <input
+              type="number"
+              class="qtd"
+              value="1"
+              min="0.01"
+              step="0.01"
+              required
+              oninput="calculateTotal()"
+            >
+          </div>
+
+          <div class="field">
+            <label>Valor Unitário</label>
+
+            <input
+              type="number"
+              class="valor"
+              value="0"
+              step="0.01"
+              min="0.01"
+              required
+              oninput="calculateTotal()"
+            >
+          </div>
+
+        </div>
+
+        <div class="total-item">
+          Total:
+          <span class="total-item-value">
+            R$ 0,00
+          </span>
+        </div>
+
+      `;
+
+      container.appendChild(div);
+
+      calculateTotal();
+
+    }
+
+    function removeItem(button){
+
+      button.closest('.item-card').remove();
+
+      calculateTotal();
+
+    }
+
+    async function generatePdf(){
+
+      const requiredFields = document.querySelectorAll(
+        '#data, #cliente, #endereco, #objetivo, #condicao-pagamento, #forma-pagamento, .descricao, .qtd, .valor'
+      );
+
+      for(const field of requiredFields){
+
+        if(!field.checkValidity()){
+          field.reportValidity();
+          field.focus();
+          return;
+        }
+
+      }
+
+      populatePrintSheet();
+
+      try{
+        await downloadPdfStyled();
+      }catch(error){
+        alert('Nao foi possivel carregar a logo ou a assinatura para gerar o PDF.');
+      }
+
+    }
+
+    function formatDate(value){
+
+      const [year, month, day] = value.split('-');
+      return `${day}/${month}/${year}`;
+
+    }
+
+    function buildFileName(){
+
+      const meses = [
+        'janeiro','fevereiro','marco','abril','maio','junho',
+        'julho','agosto','setembro','outubro','novembro','dezembro'
+      ];
+
+      const clienteRaw = document.getElementById('cliente').value;
+      const dataRaw    = document.getElementById('data').value;
+
+      // Substitui espaços por _ e remove caracteres inválidos em nomes de arquivo
+      const clienteFormatado = clienteRaw
+        .trim()
+        .replace(/\s+/g, '_')
+        .replace(/[\/\\:*?"<>|]/g, '');
+
+      const [ano, mes] = dataRaw.split('-');
+      const nomeMes    = meses[parseInt(mes, 10) - 1];
+
+      // Sufixo MMSS do momento da geração para evitar sobrescrita
+      const agora    = new Date();
+      const minutos  = String(agora.getMinutes()).padStart(2, '0');
+      const segundos = String(agora.getSeconds()).padStart(2, '0');
+      const sufixo   = `${minutos}${segundos}`;
+
+      return `${clienteFormatado}_${nomeMes}_${ano}-${sufixo}.pdf`;
+
+    }
+
+    function populatePrintSheet(){
+
+      const items = document.querySelectorAll('.item-card');
+      const printItems = document.getElementById('print-items');
+      let totalGeral = 0;
+
+      document.getElementById('print-date').innerText =
+        formatDate(document.getElementById('data').value);
+
+      document.getElementById('print-client').innerText =
+        document.getElementById('cliente').value;
+
+      document.getElementById('print-address').innerText =
+        document.getElementById('endereco').value;
+
+      document.getElementById('print-objective').innerText =
+        document.getElementById('objetivo').value;
+
+      document.getElementById('print-condicao-pagamento').innerText =
+        document.getElementById('condicao-pagamento').value;
+
+      document.getElementById('print-forma-pagamento').innerText =
+        document.getElementById('forma-pagamento').value;
+
+      printItems.innerHTML = '';
+
+      items.forEach((item, index) => {
+
+        const descricao = item.querySelector('.descricao').value;
+        const qtd = parseFloat(item.querySelector('.qtd').value) || 0;
+        const valor = parseFloat(item.querySelector('.valor').value) || 0;
+        const total = qtd * valor;
+        const row = document.createElement('tr');
+        const values = [
+          index + 1,
+          descricao,
+          formatNumber(qtd),
+          formatCurrency(valor),
+          formatCurrency(total)
+        ];
+
+        totalGeral += total;
+
+        values.forEach(value => {
+
+          const cell = document.createElement('td');
+          cell.innerText = value;
+          row.appendChild(cell);
+
+        });
+
+        printItems.appendChild(row);
+
+      });
+
+      document.getElementById('print-total').innerText =
+        formatCurrency(totalGeral);
+
+    }
+
+    async function downloadPdfStyled(){
+
+      if(!window.jspdf){
+        alert('Nao foi possivel carregar o gerador de PDF. Verifique sua conexao e tente novamente.');
+        return;
+      }
+
+      const { jsPDF } = window.jspdf;
+      const doc = new jsPDF({
+        orientation:'portrait',
+        unit:'mm',
+        format:'a4'
+      });
+
+      const pageWidth = doc.internal.pageSize.getWidth();
+      const pageHeight = doc.internal.pageSize.getHeight();
+      const margin = 10;
+      const contentWidth = pageWidth - (margin * 2);
+      const dark = [37, 45, 49];
+      const red = [229, 45, 56];
+      const light = [240, 242, 242];
+      const rows = Array.from(document.querySelectorAll('.item-card'));
+      const logo = await imageToDataUrl('img/logo-only.png');
+      const signature = await imageToDataUrl('img/assinatura.png');
+      let totalGeral = 0;
+      let currentY = 39;
+
+      doc.setFillColor(...dark);
+      doc.rect(0, 0, pageWidth, 34, 'F');
+      doc.addImage(logo, 'PNG', margin, 6, 17, 17);
+      doc.setTextColor(255, 255, 255);
+      doc.setFont('helvetica', 'bold');
+      doc.setFontSize(14);
+      doc.text('LF SERVIÇOS', 30, 14);
+      doc.setFont('helvetica', 'normal');
+      doc.setFontSize(10);
+      doc.text('EM ELEVADORES', 30, 19);
+      doc.setDrawColor(190, 196, 198);
+      doc.line(102, 7, 102, 27);
+      doc.setFontSize(10);
+      doc.text('LF Serviços em Elevadores LTDA', 108, 10);
+      doc.text('CNPJ: 14.445.230/0001-79', 108, 14);
+      doc.text('Rua da Mangueira, 320 - 62860000', 108, 18);
+      doc.text('Pindoretama - Centro', 108, 22);
+      doc.text('85 99849 2021', 108, 26);
+
+      doc.setTextColor(...red);
+      doc.setFont('helvetica', 'bold');
+      doc.setFontSize(10);
+      doc.text('PROPOSTA COMERCIAL', margin, currentY);
+      doc.setDrawColor(...red);
+      doc.setLineWidth(0.6);
+      doc.line(57, currentY - 1, 78, currentY - 1);
+      doc.setTextColor(32, 36, 39);
+      doc.setFontSize(27);
+      doc.text('ORÇAMENTO', margin, currentY + 12);
+      doc.setTextColor(125, 133, 137);
+      doc.setFont('helvetica', 'normal');
+      doc.setFontSize(10);
+      doc.text('SOLUÇÕES EM ELEVADORES COM MAIS SEGURANÇA E VALOR', margin, currentY + 18);
+      doc.setDrawColor(201, 205, 206);
+      doc.line(165, currentY - 1, 165, currentY + 16);
+      doc.setTextColor(96, 105, 109);
+      doc.setFontSize(10);
+      doc.text('DATA', 171, currentY + 3);
+      doc.setTextColor(32, 36, 39);
+      doc.setFont('helvetica', 'bold');
+      doc.setFontSize(10);
+      doc.text(formatDate(document.getElementById('data').value), 171, currentY + 11);
+
+      currentY += 27;
+      doc.setFillColor(...light);
+      doc.rect(margin, currentY, contentWidth, 27, 'F');
+      doc.setTextColor(96, 105, 109);
+      doc.setFont('helvetica', 'normal');
+      doc.setFontSize(10);
+      doc.text('CLIENTE', margin + 6, currentY + 7);
+      doc.setTextColor(32, 36, 39);
+      doc.setFont('helvetica', 'bold');
+      doc.setFontSize(10);
+      doc.text(document.getElementById('cliente').value, margin + 6, currentY + 13);
+      doc.setFont('helvetica', 'normal');
+      doc.setFontSize(11);
+      doc.text(
+        doc.splitTextToSize(document.getElementById('endereco').value, 155),
+        margin + 6,
+        currentY + 19
+      );
+
+      currentY += 36;
+      doc.setFillColor(...red);
+      doc.rect(margin, currentY, 2, 17, 'F');
+      doc.setTextColor(32, 36, 39);
+      doc.setFont('helvetica', 'bold');
+      doc.setFontSize(11);
+      doc.text('OBJETIVO', margin + 6, currentY + 5);
+      doc.setFont('helvetica', 'normal');
+      doc.setFontSize(11);
+      const objectiveLines = doc.splitTextToSize(document.getElementById('objetivo').value, 174);
+      doc.text(objectiveLines, margin + 6, currentY + 11);
+      currentY += 18 + (objectiveLines.length * 4);
+
+      doc.setFillColor(...red);
+      doc.rect(margin, currentY, 2, 8, 'F');
+      doc.setTextColor(32, 36, 39);
+      doc.setFont('helvetica', 'bold');
+      doc.setFontSize(11);
+      doc.text('DESCRIÇÃO DOS SERVIÇOS', margin + 6, currentY + 6);
+      currentY += 12;
+
+      const tableX = margin;
+      const columns = [10, 91, 18, 32, 29];
+      const headers = ['Item', 'Descrição', 'Qtde', 'Preço Unitário', 'Preço Total'];
+      doc.setFillColor(...light);
+      doc.rect(tableX, currentY, contentWidth, 10, 'F');
+      doc.setTextColor(32, 36, 39);
+      doc.setFont('helvetica', 'bold');
+      doc.setFontSize(10);
+      let columnX = tableX + 4;
+      headers.forEach((header, index) => {
+        const align = index === 0 || index === 2 ? 'center' : index > 2 ? 'right' : 'left';
+        const x = align === 'right' ? columnX + columns[index] - 4 : align === 'center' ? columnX + (columns[index] / 2) : columnX;
+        doc.text(header, x, currentY + 6, { align });
+        columnX += columns[index];
+      });
+
+      currentY += 10;
+      doc.setFont('helvetica', 'normal');
+      doc.setFontSize(10);
+      rows.forEach((item, index) => {
+        const descricao = item.querySelector('.descricao').value;
+        const qtd = parseFloat(item.querySelector('.qtd').value) || 0;
+        const valor = parseFloat(item.querySelector('.valor').value) || 0;
+        const total = qtd * valor;
+        const descriptionLines = doc.splitTextToSize(descricao, 86);
+        const rowHeight = Math.max(9, descriptionLines.length * 4 + 4);
+        totalGeral += total;
+        doc.setDrawColor(211, 215, 216);
+        doc.line(tableX, currentY + rowHeight, tableX + contentWidth, currentY + rowHeight);
+        doc.setTextColor(32, 36, 39);
+        doc.text(String(index + 1), tableX + 5, currentY + 6, { align:'center' });
+        doc.text(descriptionLines, tableX + columns[0] + 4, currentY + 5);
+        doc.text(formatNumber(qtd), tableX + columns[0] + columns[1] + 9, currentY + 6, { align:'center' });
+        doc.text(formatCurrency(valor), tableX + columns[0] + columns[1] + columns[2] + columns[3] - 4, currentY + 6, { align:'right' });
+        doc.text(formatCurrency(total), tableX + contentWidth - 4, currentY + 6, { align:'right' });
+        currentY += rowHeight;
+      });
+
+      doc.setFillColor(...dark);
+      doc.rect(tableX, currentY, contentWidth - 42, 11, 'F');
+      doc.setFillColor(...red);
+      doc.rect(tableX + contentWidth - 42, currentY, 42, 11, 'F');
+      doc.setTextColor(255, 255, 255);
+      doc.setFont('helvetica', 'bold');
+      doc.setFontSize(10);
+      doc.text('TOTAL GERAL', tableX + contentWidth - 48, currentY + 7, { align:'right' });
+      doc.setFontSize(11);
+      doc.text(formatCurrency(totalGeral), tableX + contentWidth - 4, currentY + 7, { align:'right' });
+      currentY += 17;
+
+      const paymentWidth = (contentWidth - 5) / 2;
+      const drawPaymentCard = (x, title, value) => {
+        doc.setFillColor(...light);
+        doc.rect(x, currentY, paymentWidth, 28, 'F');
+        doc.setFillColor(...red);
+        doc.rect(x + 5, currentY + 5, 2, 6, 'F');
+        doc.setTextColor(32, 36, 39);
+        doc.setFont('helvetica', 'bold');
+        doc.setFontSize(11);
+        doc.text(title, x + 11, currentY + 10);
+        doc.setFont('helvetica', 'normal');
+        doc.setFontSize(10);
+        doc.text(doc.splitTextToSize(value, paymentWidth - 22), x + 6, currentY + 17);
+      };
+      drawPaymentCard(margin, 'CONDIÇÃO DE PAGAMENTO', document.getElementById('condicao-pagamento').value);
+      drawPaymentCard(margin + paymentWidth + 5, 'FORMA DE PAGAMENTO', document.getElementById('forma-pagamento').value);
+      currentY += 38;
+
+      doc.setTextColor(32, 36, 39);
+      doc.setFont('helvetica', 'italic');
+      doc.setFontSize(10);
+      doc.text('Atenciosamente', margin + 4, currentY);
+      doc.addImage(signature, 'PNG', margin + 4, currentY + 2, 34, 10);
+      doc.setDrawColor(80, 80, 80);
+      doc.line(margin + 4, currentY + 19, 80, currentY + 19);
+      doc.setFont('helvetica', 'normal');
+      doc.setFontSize(10);
+      doc.text('L. F. Serviços em Elevadores LTDA', margin + 4, currentY + 24);
+      doc.text('Jose de Arimateia Falcao', margin + 4, currentY + 28);
+      doc.text('85 99849-2021', margin + 4, currentY + 32);
+      doc.line(120, currentY + 19, pageWidth - margin, currentY + 19);
+      doc.text('Autorizado Por:                 Data: ____/____/________', 120, currentY + 24);
+
+      doc.save(buildFileName());
+
+    }
+
+    async function downloadPdf(){
+
+      if(!window.jspdf){
+        alert('Nao foi possivel carregar o gerador de PDF. Verifique sua conexao e tente novamente.');
+        return;
+      }
+
+      const { jsPDF } = window.jspdf;
+      const doc = new jsPDF({
+        orientation:'portrait',
+        unit:'mm',
+        format:'a4'
+      });
+
+      const pageWidth = doc.internal.pageSize.getWidth();
+      const left = 22;
+      const right = pageWidth - 22;
+      const rows = Array.from(document.querySelectorAll('.item-card'));
+      let totalGeral = 0;
+      let currentY = 24;
+
+      const logo = await imageToDataUrl('img/logo-only.png');
+      const signature = await imageToDataUrl('img/assinatura.png');
+
+      doc.addImage(logo, 'PNG', left, 12, 24, 28);
+
+      doc.setFont('helvetica', 'bolditalic');
+      doc.setFontSize(11);
+      doc.text('LF Serviços em Elevadores LTDA', right, currentY, { align:'right' });
+      doc.text('CNPJ: 14.445.230/0001-79', right, currentY + 5, { align:'right' });
+      doc.text('Rua da Mangueira, 320 - 6286000', right, currentY + 10, { align:'right' });
+      doc.text('Pindoretama - Centro', right, currentY + 15, { align:'right' });
+      doc.text('85 99849 2021', right, currentY + 20, { align:'right' });
+
+      currentY = 54;
+      doc.setFont('helvetica', 'bold');
+      doc.setFontSize(11);
+      doc.text('ORÇAMENTO', left, currentY);
+      doc.text(
+        formatDate(document.getElementById('data').value),
+        right,
+        currentY,
+        { align:'right' }
+      );
+      doc.setDrawColor(140, 140, 140);
+      doc.line(left, currentY + 3, right, currentY + 3);
+
+      doc.setFontSize(10);
+      doc.text(document.getElementById('cliente').value, left, currentY + 9);
+      doc.setFont('helvetica', 'normal');
+      doc.text(
+        doc.splitTextToSize(document.getElementById('endereco').value, 166),
+        left,
+        currentY + 15
+      );
+
+      currentY = 90;
+      doc.setFont('helvetica', 'bold');
+      doc.text('Objetivo', left, currentY);
+      doc.setFont('helvetica', 'normal');
+      doc.text(
+        doc.splitTextToSize(document.getElementById('objetivo').value, 166),
+        left,
+        currentY + 6
+      );
+
+      currentY = 110;
+      doc.setFont('helvetica', 'bold');
+      doc.text('DESCRIÇÃO DOS SERVIÇOS', left, currentY);
+      doc.setDrawColor(220, 220, 220);
+      doc.line(left, currentY + 3, right, currentY + 3);
+
+      currentY += 12;
+      doc.setFont('helvetica', 'bold');
+      doc.text('Item', left, currentY);
+      doc.text('Descrição', left + 10, currentY);
+      doc.text('Qtde', 119, currentY, { align:'center' });
+      doc.text('Preço Unitário', 146, currentY, { align:'center' });
+      doc.text('Preço Total', right, currentY, { align:'right' });
+
+      doc.setFont('helvetica', 'normal');
+
+      rows.forEach((item, index) => {
+
+        const descricao = item.querySelector('.descricao').value;
+        const qtd = parseFloat(item.querySelector('.qtd').value) || 0;
+        const valor = parseFloat(item.querySelector('.valor').value) || 0;
+        const total = qtd * valor;
+        const descriptionLines = doc.splitTextToSize(descricao, 72);
+        const rowHeight = Math.max(descriptionLines.length * 5, 8);
+
+        totalGeral += total;
+        currentY += 8;
+
+        doc.text(String(index + 1), left + 3, currentY, { align:'center' });
+        doc.text(descriptionLines, left + 10, currentY);
+        doc.text(formatNumber(qtd), 119, currentY, { align:'center' });
+        doc.text(formatCurrency(valor), 156, currentY, { align:'right' });
+        doc.text(formatCurrency(total), right, currentY, { align:'right' });
+        currentY += rowHeight - 8;
+
+      });
+
+      currentY += 4;
+      doc.setDrawColor(0, 0, 0);
+      doc.line(left, currentY, right, currentY);
+      currentY += 7;
+      doc.setFont('helvetica', 'bold');
+      doc.text('TOTAL GERAL', 156, currentY, { align:'right' });
+      doc.text(formatCurrency(totalGeral), right, currentY, { align:'right' });
+
+      currentY += 14;
+      doc.setFont('helvetica', 'bold');
+      doc.text('CONDIÇÃO DE PAGAMENTO', left, currentY);
+      doc.setFont('helvetica', 'normal');
+      const condicaoPagamento = doc.splitTextToSize(
+        document.getElementById('condicao-pagamento').value,
+        166
+      );
+      doc.text(condicaoPagamento, left, currentY + 6);
+      currentY += 6 + (condicaoPagamento.length * 5);
+
+      doc.setFont('helvetica', 'bold');
+      doc.text('FORMA DE PAGAMENTO', left, currentY + 3);
+      doc.setFont('helvetica', 'normal');
+      const formaPagamento = doc.splitTextToSize(
+        document.getElementById('forma-pagamento').value,
+        166
+      );
+      doc.text(formaPagamento, left, currentY + 9);
+      currentY += 9 + (formaPagamento.length * 5);
+
+      currentY += 12;
+      doc.setFont('helvetica', 'italic');
+      doc.text('Atenciosamente', left, currentY);
+      doc.addImage(signature, 'PNG', left, currentY + 5, 42, 12);
+      doc.setFont('helvetica', 'normal');
+      doc.setFontSize(10);
+      doc.text('L. F. Servicos em Elevadores LTDA', left, currentY + 24);
+      doc.text('Jose de Arimateia Falcao', left, currentY + 29);
+      doc.text('85 99849-2021', left, currentY + 34);
+      doc.line(108, currentY + 24, right, currentY + 24);
+      doc.text('Autorizado Por:', 108, currentY + 29);
+      doc.text('Data: ____/____/________', 150, currentY + 29);
+
+      doc.save(buildFileName());
+
+    }
+
+    function imageToDataUrl(src){
+
+      return new Promise((resolve, reject) => {
+
+        const image = new Image();
+
+        image.onload = () => {
+
+          const canvas = document.createElement('canvas');
+          canvas.width = image.naturalWidth;
+          canvas.height = image.naturalHeight;
+
+          const context = canvas.getContext('2d');
+          context.drawImage(image, 0, 0);
+
+          resolve(canvas.toDataURL('image/png'));
+
+        };
+
+        image.onerror = reject;
+        image.src = src;
+
+      });
+
+    }
+
+    function resetForm(){
+
+      document.getElementById('data').value = '';
+      document.getElementById('cliente').value = '';
+      document.getElementById('endereco').value = '';
+      document.getElementById('objetivo').value = '';
+      document.getElementById('condicao-pagamento').value = '';
+      document.getElementById('forma-pagamento').value = '';
+      document.getElementById('items-container').innerHTML = '';
+      itemIndex = 0;
+      addItem();
+
+    }
+
+    addItem();
+
+  </script>
+
+</body>
+</html>
