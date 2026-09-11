@@ -57,64 +57,64 @@
     // Configuração das imagens por produto
     const productImages = {
       tlf1: [
-        'img/tetos-tlf1.png',
-        'img/tetos-tlf1-angle2.png',
-        'img/tetos-tlf1-angle3.png',
-        'img/tetos-tlf1-angle4.png'
+        'img/catalogo/tetos/tetos-tlf1.png',
+        'img/catalogo/tetos/tetos-tlf1-angle2.png',
+        'img/catalogo/tetos/tetos-tlf1-angle3.png',
+        'img/catalogo/tetos/tetos-tlf1-angle4.png'
       ],
       tlf2: [
-        'img/tetos-tlf2.png',
-        'img/tetos-tlf2-angle2.png',
-        'img/tetos-tlf2-angle3.png',
-        'img/tetos-tlf2-angle4.png'
+        'img/catalogo/tetos/tetos-tlf2.png',
+        'img/catalogo/tetos/tetos-tlf2-angle2.png',
+        'img/catalogo/tetos/tetos-tlf2-angle3.png',
+        'img/catalogo/tetos/tetos-tlf2-angle4.png'
       ],
       tlf3: [
-        'img/tetos-tlf3.png',
-        'img/tetos-tlf3-angle2.png',
-        'img/tetos-tlf3-angle3.png',
-        'img/tetos-tlf3-angle4.png'
+        'img/catalogo/tetos/tetos-tlf3.png',
+        'img/catalogo/tetos/tetos-tlf3-angle2.png',
+        'img/catalogo/tetos/tetos-tlf3-angle3.png',
+        'img/catalogo/tetos/tetos-tlf3-angle4.png'
       ],
       tlf4: [
-        'img/tetos-tlf4.png',
-        'img/tetos-tlf4-angle2.png',
-        'img/tetos-tlf4-angle3.png',
-        'img/tetos-tlf4-angle4.png'
+        'img/catalogo/tetos/tetos-tlf4.png',
+        'img/catalogo/tetos/tetos-tlf4-angle2.png',
+        'img/catalogo/tetos/tetos-tlf4-angle3.png',
+        'img/catalogo/tetos/tetos-tlf4-angle4.png'
       ],
       plf1: [
-        'img/pisos-plf1.png',
-        'img/pisos-plf1-angle2.png'
+        'img/catalogo/pisos/pisos-plf1.png',
+        'img/catalogo/pisos/pisos-plf1-angle2.png'
       ],
       plf2: [
-        'img/pisos-plf2.png',
-        'img/pisos-plf2-angle2.png'
+        'img/catalogo/pisos/pisos-plf2.png',
+        'img/catalogo/pisos/pisos-plf2-angle2.png'
       ],
       plf3: [
-        'img/pisos-plf3.png',
-        'img/pisos-plf3-angle2.png'
+        'img/catalogo/pisos/pisos-plf3.png',
+        'img/catalogo/pisos/pisos-plf3-angle2.png'
       ],
       plf4: [
-        'img/pisos-plf4.png',
-        'img/pisos-plf4-angle2.png'
+        'img/catalogo/pisos/pisos-plf4.png',
+        'img/catalogo/pisos/pisos-plf4-angle2.png'
       ],
       plf5: [
-        'img/pisos-plf5.png',
-        'img/pisos-plf5-angle2.png'
+        'img/catalogo/pisos/pisos-plf5.png',
+        'img/catalogo/pisos/pisos-plf5-angle2.png'
       ],
       plf6: [
-        'img/pisos-plf6.png',
-        'img/pisos-plf6-angle2.png'
+        'img/catalogo/pisos/pisos-plf6.png',
+        'img/catalogo/pisos/pisos-plf6-angle2.png'
       ],
       clf1: [
-        'img/corrimaos-clf1.png',
-        'img/corrimaos-clf1-angle2.png',
+        'img/catalogo/corrimaos/corrimaos-clf1.png',
+        'img/catalogo/corrimaos/corrimaos-clf1-angle2.png',
       ],
       clf2: [
-        'img/corrimaos-clf2.png',
-        'img/corrimaos-clf2-angle2.png'
+        'img/catalogo/corrimaos/corrimaos-clf2.png',
+        'img/catalogo/corrimaos/corrimaos-clf2-angle2.png'
       ],
       clf3: [
-        'img/corrimaos-clf3.png',
-        'img/corrimaos-clf3-angle2.png'
+        'img/catalogo/corrimaos/corrimaos-clf3.png',
+        'img/catalogo/corrimaos/corrimaos-clf3-angle2.png'
       ]
     };
 

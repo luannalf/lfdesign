@@ -189,7 +189,7 @@
       <div class="topo">
         <img
           class="logo"
-          src="img/logo-lf.png"
+          src="img/marca/logo-lf.png"
           alt="LF Servi&ccedil;os"
         />
 
@@ -491,7 +491,7 @@
       const maxWidth = right - left;
       let currentY = 24;
 
-      const logo = await imageToDataUrl('img/logo-lf.png');
+      const logo = await imageToDataUrl('img/marca/logo-lf.png');
 
       doc.addImage(logo, 'PNG', left, 12, 24, 28);
 
@@ -614,11 +614,11 @@
         .toLowerCase();
 
       if(tecnico === 'arimateia falcao' || tecnico === 'arimateia'){
-        return 'img/assinatura-ari.png';
+        return 'img/documentos/assinatura-ari.png';
       }
 
       if(tecnico === 'luan falcao' || tecnico === 'luan'){
-        return 'img/assinatura-luan.png';
+        return 'img/documentos/assinatura-luan.png';
       }
 
       return '';
