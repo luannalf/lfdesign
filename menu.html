@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Central de ferramentas e documentos da LF Design.">
+  <title>LF Design | Menu</title>
+  <link rel="icon" href="favicon.ico" type="image/x-icon">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --red: #e52327;
+      --red-dark: #b7191d;
+      --ink: #171717;
+      --muted: #6f7074;
+      --line: #e7e7e7;
+      --paper: #ffffff;
+      --soft: #f5f5f3;
+      --max-width: 1120px;
+    }
+
+    * { box-sizing: border-box; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      margin: 0;
+      color: var(--ink);
+      background: var(--soft);
+      font-family: "Manrope", "Segoe UI", sans-serif;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    a { color: inherit; }
+
+    .topbar {
+      background: var(--ink);
+      color: #fff;
+    }
+
+    .topbar-inner {
+      width: min(100% - 40px, var(--max-width));
+      min-height: 76px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+    }
+
+    .brand {
+      display: inline-flex;
+      align-items: center;
+      gap: 14px;
+      color: #fff;
+      text-decoration: none;
+      font-size: 0.82rem;
+      font-weight: 800;
+      letter-spacing: 0.13em;
+      text-transform: uppercase;
+    }
+
+    .brand img { width: 96px; height: auto; }
+
+    .back-link {
+      color: #d7d7d7;
+      font-size: 0.82rem;
+      font-weight: 700;
+      text-decoration: none;
+    }
+
+    .back-link:hover, .back-link:focus-visible { color: #fff; }
+
+    main {
+      width: min(100% - 40px, var(--max-width));
+      margin: 0 auto;
+      padding: 72px 0 80px;
+    }
+
+    .intro {
+      max-width: 700px;
+      margin-bottom: 52px;
+    }
+
+    .eyebrow {
+      margin: 0 0 14px;
+      color: var(--red);
+      font-size: 0.75rem;
+      font-weight: 800;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+    }
+
+    h1 {
+      max-width: 650px;
+      margin: 0 0 16px;
+      font-size: clamp(2.4rem, 5vw, 4.6rem);
+      line-height: 0.98;
+      letter-spacing: -0.04em;
+    }
+
+    .intro p {
+      max-width: 590px;
+      margin: 0;
+      color: var(--muted);
+      font-size: 1.05rem;
+      line-height: 1.7;
+    }
+
+    .category { margin-top: 48px; }
+
+    .category-heading {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      gap: 16px;
+      margin-bottom: 16px;
+      border-bottom: 1px solid var(--line);
+      padding-bottom: 12px;
+    }
+
+    h2 {
+      margin: 0;
+      font-size: 1.15rem;
+      letter-spacing: -0.02em;
+    }
+
+    .category-heading span {
+      color: var(--muted);
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .link-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 14px;
+    }
+
+    .menu-link {
+      min-height: 156px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      padding: 22px;
+      border: 1px solid var(--line);
+      background: var(--paper);
+      text-decoration: none;
+      transition: border-color 180ms ease, box-shadow 180ms ease, transform 180ms ease;
+    }
+
+    .menu-link:hover, .menu-link:focus-visible {
+      border-color: var(--red);
+      box-shadow: 0 12px 28px rgba(23, 23, 23, 0.09);
+      transform: translateY(-3px);
+    }
+
+    .menu-link:focus-visible, .back-link:focus-visible, .brand:focus-visible {
+      outline: 3px solid rgba(229, 35, 39, 0.35);
+      outline-offset: 4px;
+    }
+
+    .icon {
+      width: 36px;
+      height: 36px;
+      display: grid;
+      place-items: center;
+      background: #fff0f0;
+      color: var(--red);
+      font-size: 1.05rem;
+      font-weight: 800;
+    }
+
+    .menu-link h3 {
+      margin: 20px 0 6px;
+      font-size: 1rem;
+      line-height: 1.25;
+    }
+
+    .menu-link p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 0.82rem;
+      line-height: 1.5;
+    }
+
+    .arrow {
+      align-self: flex-end;
+      color: var(--red);
+      font-size: 1.1rem;
+      font-weight: 800;
+    }
+
+    footer {
+      width: min(100% - 40px, var(--max-width));
+      margin: 0 auto;
+      padding: 20px 0 32px;
+      border-top: 1px solid var(--line);
+      color: var(--muted);
+      font-size: 0.78rem;
+    }
+
+    @media (max-width: 760px) {
+      .topbar-inner, main, footer { width: min(100% - 32px, var(--max-width)); }
+      main { padding-top: 48px; }
+      .link-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+
+    @media (max-width: 480px) {
+      .topbar-inner { min-height: 68px; }
+      .brand img { width: 82px; }
+      .back-link { font-size: 0.72rem; }
+      .intro { margin-bottom: 38px; }
+      .link-grid { grid-template-columns: 1fr; }
+      .menu-link { min-height: 136px; }
+    }
+  </style>
+</head>
+<body>
+  <header class="topbar">
+    <div class="topbar-inner">
+      <a class="brand" href="menu.html" aria-label="LF Design - menu principal">
+        <img src="img/logo.png" alt="LF Design">
+        <span>Central de documentos</span>
+      </a>
+      <a class="back-link" href="index.html">Ver catálogo <span aria-hidden="true">-&gt;</span></a>
+    </div>
+  </header>
+
+  <main>
+    <section class="intro" aria-labelledby="page-title">
+      <p class="eyebrow">LF Design / acesso rápido</p>
+      <h1 id="page-title">Tudo o que você precisa, em um só lugar.</h1>
+      <p>Escolha uma categoria para abrir o catálogo, gerar documentos ou preparar um atendimento.</p>
+    </section>
+
+    <section class="category" aria-labelledby="catalogo-title">
+      <div class="category-heading">
+        <h2 id="catalogo-title">Catálogo</h2>
+        <span>Produtos e soluções</span>
+      </div>
+      <div class="link-grid">
+        <a class="menu-link" href="index.html">
+          <span class="icon" aria-hidden="true">01</span>
+          <div><h3>Catálogo LF Design</h3><p>Tetos, pisos, corrimãos e soluções para elevadores.</p></div>
+          <span class="arrow" aria-hidden="true">-&gt;</span>
+        </a>
+      </div>
+    </section>
+
+    <section class="category" aria-labelledby="notas-title">
+      <div class="category-heading">
+        <h2 id="notas-title">Notas fiscais</h2>
+        <span>Geradores de texto</span>
+      </div>
+      <div class="link-grid">
+        <a class="menu-link" href="gerador-nf.html">
+          <span class="icon" aria-hidden="true">NF</span>
+          <div><h3>Gerador de texto para NF</h3><p>Monte rapidamente o texto para notas fiscais da Atlas.</p></div>
+          <span class="arrow" aria-hidden="true">-&gt;</span>
+        </a>
+        <a class="menu-link" href="gerador-nf-otis.html">
+          <span class="icon" aria-hidden="true">NF</span>
+          <div><h3>Gerador de texto NF OTIS</h3><p>Versão dedicada aos serviços e itens OTIS.</p></div>
+          <span class="arrow" aria-hidden="true">-&gt;</span>
+        </a>
+      </div>
+    </section>
+
+    <section class="category" aria-labelledby="orcamentos-title">
+      <div class="category-heading">
+        <h2 id="orcamentos-title">Orçamentos</h2>
+        <span>Propostas comerciais</span>
+      </div>
+      <div class="link-grid">
+        <a class="menu-link" href="orcamento.html">
+          <span class="icon" aria-hidden="true">01</span>
+          <div><h3>Orçamento</h3><p>Crie uma proposta simples para o cliente.</p></div>
+          <span class="arrow" aria-hidden="true">-&gt;</span>
+        </a>
+        <a class="menu-link" href="orcamento-com-pagamento.html">
+          <span class="icon" aria-hidden="true">02</span>
+          <div><h3>Orçamento com pagamento</h3><p>Proposta com condições e informações de pagamento.</p></div>
+          <span class="arrow" aria-hidden="true">-&gt;</span>
+        </a>
+        <a class="menu-link" href="orcamento-com-pagamento-layout.html">
+          <span class="icon" aria-hidden="true">03</span>
+          <div><h3>Orçamento com pagamento</h3><p>Layout alternativo da proposta comercial.</p></div>
+          <span class="arrow" aria-hidden="true">-&gt;</span>
+        </a>
+      </div>
+    </section>
+
+    <section class="category" aria-labelledby="atendimento-title">
+      <div class="category-heading">
+        <h2 id="atendimento-title">Atendimento</h2>
+        <span>Documentos de serviço</span>
+      </div>
+      <div class="link-grid">
+        <a class="menu-link" href="recibo.html">
+          <span class="icon" aria-hidden="true">04</span>
+          <div><h3>Recibo</h3><p>Preencha e gere recibos de serviços e pagamentos.</p></div>
+          <span class="arrow" aria-hidden="true">-&gt;</span>
+        </a>
+        <a class="menu-link" href="visita-tecnica.html">
+          <span class="icon" aria-hidden="true">05</span>
+          <div><h3>Visita técnica</h3><p>Registre informações e detalhes do atendimento técnico.</p></div>
+          <span class="arrow" aria-hidden="true">-&gt;</span>
+        </a>
+      </div>
+    </section>
+  </main>
+
+  <footer>LF Design &copy; 2026. Documentos e ferramentas internas.</footer>
+</body>
+</html>
