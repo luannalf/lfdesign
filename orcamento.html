@@ -797,17 +797,17 @@
         currentY + 15
       );
 
-      currentY = 90;
+      currentY = 84;
       doc.setFont('helvetica', 'bold');
       doc.text('Objetivo', left, currentY);
       doc.setFont('helvetica', 'normal');
-      doc.text(
-        doc.splitTextToSize(document.getElementById('objetivo').value, 166),
-        left,
-        currentY + 6
+      const objectiveLines = doc.splitTextToSize(
+        document.getElementById('objetivo').value,
+        166
       );
+      doc.text(objectiveLines, left, currentY + 6);
 
-      currentY = 110;
+      currentY += 6 + objectiveLines.length * 5 + 8;
       doc.setFont('helvetica', 'bold');
       doc.text('DESCRIÇÃO DOS SERVIÇOS', left, currentY);
       doc.setDrawColor(220, 220, 220);
