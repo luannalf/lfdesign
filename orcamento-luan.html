@@ -608,7 +608,7 @@
 
         <div class="field">
           <label>Forma de pagamento</label>
-          <textarea id="forma-pagamento">PIX - 14.445.2030/0001-79 - LF SERVIÇOS EM ELEVADORES LTDA (FALCÃO METALURGICA) BANCO ITAU 341</textarea>
+          <textarea id="forma-pagamento">PIX - 14.445.2030/0001-79 - LF SOLUÇÕES LTDA (FALCÃO METALURGICA) BANCO ITAU 341</textarea>
         </div>
       </div>
 
@@ -655,7 +655,7 @@
     <div class="print-header">
 
       <div class="print-brand">
-        <img class="print-logo" src="img/marca/logo-only.png" alt="LF Servicos">
+        <img class="print-logo" src="img/marca/logo-only.png" alt="LF Soluções">
         <div>
           <div class="print-brand-name">LF SOLUÇÕES</div>
           <div class="print-brand-subtitle">SOLUÇÕES SOB MEDIDA PARA CADA PROJETO</div>
@@ -676,7 +676,7 @@
       <div>
         <div class="print-kicker">PROPOSTA COMERCIAL <span class="print-title-line"></span></div>
         <div class="print-title">ORÇAMENTO</div>
-        <div class="print-subtitle">SOLUÇÕES SOB MEDIDA PARA CADA PROJETO</div>
+        <div class="print-subtitle">SOLUÇÕES SOB MEDIDA COM MAIS SEGURANÇA E VALOR</div>
       </div>
       <div class="print-date-box">
         <div class="print-date-label">DATA</div>
@@ -746,7 +746,7 @@
             <img class="print-signature-mark" src="img/documentos/assinatura-ari.png" alt="Assinatura de Arimateia">
           </div>
           <div class="print-footer">
-            <div>L. F. Servicos em Elevadores LTDA</div>
+            <div>L. F. Soluções LTDA</div>
             <div id="print-signer">Jose de Arimateia Falcao</div>
             <div>85 99849-2021</div>
           </div>
@@ -1122,11 +1122,11 @@
       doc.text('LF SOLUÇÕES', 30, 14);
       doc.setFont('helvetica', 'normal');
       doc.setFontSize(10);
-      doc.text('SOLUÇÕES SOB MEDIDA PARA CADA PROJETO', 30, 19);
+      doc.text('SOLUÇÕES SOB MEDIDA', 30, 19);
       doc.setDrawColor(190, 196, 198);
       doc.line(102, 7, 102, 27);
       doc.setFontSize(10);
-      doc.text('LF Soluções em Elevadores LTDA - CNPJ: 14.445.230/0001-79', 108, 3); doc.text('LF Soluções em Elevadores LTDA', 108, 10);
+      doc.text('LF Soluções LTDA', 108, 10);
       doc.text('CNPJ: 14.445.230/0001-79', 108, 14);
       doc.text('Rua da Mangueira, 320 - 62860000', 108, 18);
       doc.text('Pindoretama - Centro', 108, 22);
@@ -1145,7 +1145,7 @@
       doc.setTextColor(125, 133, 137);
       doc.setFont('helvetica', 'normal');
       doc.setFontSize(10);
-      doc.text('SOLUÇÕES EM ELEVADORES COM MAIS SEGURANÇA E VALOR', margin, currentY + 18);
+      doc.text('SOLUÇÕES SOB MEDIDA PARA CADA PROJETO', margin, currentY + 18);
       doc.setDrawColor(201, 205, 206);
       doc.line(165, currentY - 1, 165, currentY + 16);
       doc.setTextColor(96, 105, 109);
@@ -1290,7 +1290,7 @@
       doc.line(margin + 4, signatureLineY, 80, signatureLineY);
       doc.setFont('helvetica', 'normal');
       doc.setFontSize(10);
-      doc.text('L. F. Serviços em Elevadores LTDA', margin + 4, signatureLineY + 6);
+      doc.text('L. F. Soluções', margin + 4, signatureLineY + 6);
       doc.text(selectedSignature.signer, margin + 4, signatureLineY + 10);
       doc.text('85 99849-2021', margin + 4, signatureLineY + 14);
       doc.line(120, signatureLineY, pageWidth - margin, signatureLineY);
@@ -1330,7 +1330,7 @@
 
       doc.setFont('helvetica', 'bolditalic');
       doc.setFontSize(11);
-      doc.text('LF Serviços em Elevadores LTDA', right, currentY, { align:'right' });
+      doc.text('LF Soluções LTDA', right, currentY, { align:'right' });
       doc.text('CNPJ: 14.445.230/0001-79', right, currentY + 5, { align:'right' });
       doc.text('Rua da Mangueira, 320 - 6286000', right, currentY + 10, { align:'right' });
       doc.text('Pindoretama - Centro', right, currentY + 15, { align:'right' });
@@ -1444,7 +1444,7 @@
       }
       doc.setFont('helvetica', 'normal');
       doc.setFontSize(10);
-      doc.text('L. F. Servicos em Elevadores LTDA', left, currentY + 24);
+      doc.text('L. F. Soluções', left, currentY + 24);
       doc.text(selectedSignature.signer, left, currentY + 29);
       doc.text('85 99849-2021', left, currentY + 34);
       doc.line(108, currentY + 24, right, currentY + 24);
@@ -1488,7 +1488,7 @@
       document.getElementById('endereco').value = '';
       document.getElementById('objetivo').value = '';
       document.getElementById('condicao-pagamento').value = '';
-      document.getElementById('forma-pagamento').value = 'PIX - 14.445.2030/0001-79 - LF SERVIÇOS EM ELEVADORES LTDA (FALCÃO METALURGICA) BANCO ITAU 341';
+      document.getElementById('forma-pagamento').value = 'PIX - 14.445.2030/0001-79 - LF SOLUÇÕES LTDA (FALCÃO METALURGICA) BANCO ITAU 341';
       document.getElementById('incluir-pagamento').checked = false;
       document.getElementById('assinatura').value = 'img/documentos/assinatura-ari.png';
       togglePaymentFields();
